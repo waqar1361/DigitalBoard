@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="text-center">
-        <h1 class="mt-4">Hello World!</h1>
-        <p>Welcome to github</p>
+        <h1>The National Notice Board!</h1>
     </div>
 @endsection

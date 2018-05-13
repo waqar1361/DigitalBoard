@@ -8,14 +8,22 @@
     <title>{{ env('APP_NAME') }}</title>
 
     <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="/css/theme.min.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/theme.min.css">
     <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
-<div class="container">
-    @yield('content')
+<div class="wrapper">
+
+    @include('layouts.nav')
+
+        <div class="col-10 m-auto">
+            @yield('content')
+        </div>
+
+    @include('layouts.footer')
 </div>
 {{--Script--}}
 <script src="/js/jquery-3.2.1.slim.min.js"></script>
