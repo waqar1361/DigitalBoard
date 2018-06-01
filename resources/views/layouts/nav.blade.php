@@ -1,10 +1,24 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="/"><img class="h-100" src="/nnb.png" alt="NNB.pk"></a>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 
-<div class="m-auto">
-        <h3 class=" text-uppercase text-center">national notice board</h3>
-</div>
-    <div class="ml-auto">
-        <a href="/login" class="btn btn-sm btn-info">Admin <span class="fa fa-lock"></span></a>
-    </div>
+    @if(auth()->guest())
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="btn btn-secondary" href="/"><span class="fa fa-lg fa-home"></span></a>
+            </li>
+        </ul>
+        <div class="ml-auto">
+            <a class="btn btn-secondary" href="/search"><span class="fa fa-lg fa-search"></span></a>
+            <a class="btn btn-secondary" href="/login">Admin</a>
+        </div>
+
+
+    @endif
+
+    @if(auth()->check())
+        <div class="m-auto">
+            <h2 class="text-light text-center">@yield('title')</h2>
+        </div>
+    @endif
+
 </nav>

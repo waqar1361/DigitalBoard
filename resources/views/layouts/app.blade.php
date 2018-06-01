@@ -7,30 +7,33 @@
 
     <title>{{ env('APP_NAME') }}</title>
 
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="/favicon.jpg">
+    <link rel="stylesheet" href="/css/hover.min.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/form.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/theme.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/nnb.css">
+    <link rel="stylesheet" href="/css/basic.css">
 
 </head>
 <body>
 <div class="wrapper">
 
+    @yield('header')
+
     @include('layouts.nav')
 
-        <div class="col-10 m-auto">
-            @yield('content')
-        </div>
+    @yield('content')
 
-    @include('layouts.footer')
 </div>
 {{--Script--}}
-<script src="/js/jquery-3.2.1.slim.min.js"></script>
-<script src="/js/jquery-3.2.1.min.js"></script>
+{{--<script src="/js/jquery-3.2.1.min.js"></script>--}}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/toaster.min.js"></script>
-<script src="/js/font-awesome.min.js"></script>
+<script src="/js/vue.js"></script>
 <script src="/js/script.js"></script>
 
 </body>
