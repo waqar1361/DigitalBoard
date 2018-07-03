@@ -3,13 +3,11 @@
 @section('content')
     <div class="row container-fluid">
 
-
-
         <div class="col-2">
-            @include('layouts.sidebar')
+            @include('layouts.adminMenu')
         </div>
 
-        <div class="col-8 offset-1 mt-4">
+        <div class="col ml-4 mt-4">
             @yield('dashboard-content')
         </div>
 

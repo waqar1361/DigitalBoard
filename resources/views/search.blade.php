@@ -15,14 +15,14 @@
     </div>
 @endsection
 @section('content')
-    <div class="container mt-4">
+
         {{--<div class="row">--}}
         <form action="">
             <div class="row">
                 <div class="col-10">
-                    <div class="form-label-group">
-                        <input type="text" id="search" class="form-control" name="q" value="" placeholder="Search">
-                        <label for="search">Search</label>
+                    <div class="form-group">
+                        <input type="text" id="search" class="form-control" name="q" value="{{ $q or '' }}" placeholder="Search">
+                        {{--<label for="search">Search</label>--}}
                     </div>
                 </div>
                 <div class="col">
@@ -31,5 +31,5 @@
             </div>
         </form>
         {{--</div>--}}
-    </div>
+
 @endsection

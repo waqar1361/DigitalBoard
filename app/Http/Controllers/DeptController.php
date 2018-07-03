@@ -14,9 +14,11 @@ class DeptController extends Controller {
 
     public function list()
     {
-        $items = Department::all()->sortBy('name');
+        $govt_depts = Department::depts('govt');
+        $semi_govt_depts = Department::depts('semi-govt');
+        $pvt_depts = Department::depts('private');
 
-        return view('Dept.list', compact('items'));
+        return view('Dept.list', compact('govt_depts','semi_govt_depts','pvt_depts'));
     }
 
     public function create()
@@ -27,10 +29,13 @@ class DeptController extends Controller {
     public function store()
     {
         $this->validate(request(), [
-            'name' => 'required|min:4'
+            'name' => 'required|min:3',
+            'type' => 'required'
         ]);
-        $new_dept =  new Department(request(['name']));
-        $new_dept->save();
+        Department::create([
+            'name' => request()->name,
+            'type' => request()->type
+            ]);
         return ["added successfully"];
     }
 

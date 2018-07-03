@@ -10,6 +10,6 @@ class Notice extends Model
     }
 
     protected $fillable = [
-        'title', 'path', 'department_id',
+        'title', 'file', 'department_id',
     ];
 }

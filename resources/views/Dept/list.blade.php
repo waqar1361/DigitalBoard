@@ -2,22 +2,61 @@
 @section('title', 'Department List')
 
 @section('dashboard-content')
+    <div class="row">
 
-        <table class="table table-secondary text-dark table-bordered">
-        <thead>
-        <tr class="bg-dark text-center text-white">
-                <th scope="col" class="text-uppercase">Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($items as $item)
-            <tr>
-                {{--<th scope="row">{{$item->ID}}</th>--}}
-                <td>{{$item->name}}</td>
+    <div class="col-4">
+        <table class="table table-sm table-striped text-dark table-bordered">
+            <thead>
+            <tr class="bg-secondary text-center text-white">
+                <th scope="col" class="text-uppercase">Government</th>
             </tr>
-        @endforeach
-        </tbody>
+            </thead>
+            <tbody>
+            @foreach($govt_depts as $item)
+                <tr>
+                    <td class="pl-4 text-capitalize">{{$item->name}}</td>
+                </tr>
+            @endforeach
+            </tbody>
 
-    </table>
+        </table>
+    </div>
 
+    <div class="col-4">
+        <table class="table table-sm table-striped text-dark table-bordered">
+            <thead>
+            <tr class="bg-secondary text-center text-white">
+                <th scope="col" class="text-uppercase">Semi Government</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($semi_govt_depts as $item)
+                <tr>
+                    <td class="pl-4 text-capitalize">{{$item->name}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="col-4">
+        <table class="table table-sm table-striped text-dark table-bordered">
+            <thead>
+            <tr class="bg-secondary text-center text-white">
+                <th scope="col" class="text-uppercase">Private</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($pvt_depts as $item)
+                <tr>
+                    <td class="pl-4 text-capitalize">{{$item->name}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+
+        </table>
+    </div>
+
+    </div>
 @endsection

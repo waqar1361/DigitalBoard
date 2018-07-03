@@ -4,6 +4,17 @@ namespace App;
 
 class Department extends Model
 {
+    /*
+     * @overRide
+     */
+    public $timestamps = false;
+    protected $fillable = ['name','type'];
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
     public function notices()
     {
         return $this->hasMany(Notice::class);
@@ -14,12 +25,10 @@ class Department extends Model
         return $this->hasMany(Notification::class);
     }
 
-    public $timestamps = false;
 
-    public function getRouteKeyName()
+    public static function scopeDepts($query,$type)
     {
-        return 'name';
+        return $query->where('type', $type)->orderBy('name')->get();
     }
-
 
 }

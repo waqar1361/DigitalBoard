@@ -9,6 +9,6 @@ class Notification extends Model
         return $this->belongsTo(Department::class);
     }
 
-    protected $fillable = ['title','path','dept_id'];
+    protected $fillable = ['title','file','department_id'];
 
 }

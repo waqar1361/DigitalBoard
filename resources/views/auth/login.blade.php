@@ -9,9 +9,7 @@
 
     <title>Admin</title>
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/theme.min.css" rel="stylesheet">
-    <link href="/css/nnb.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
     <link href="/css/signin.css" rel="stylesheet">
 
 </head>
@@ -53,12 +51,12 @@
         </label>
     </div>
     <div class="form-group">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-secondary btn-block" type="submit">Sign in</button>
     </div>
     <div class="text-center">
         <a href="/">Home</a>
     </div>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-{{date('Y')}}</p>
 </form>
 </body>
 </html>

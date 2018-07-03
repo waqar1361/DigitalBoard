@@ -45,17 +45,15 @@ class HomeController extends Controller
     {
         $request->validate([
             'upload_file' => 'required|mimes:pdf|max:1024',
-            'title' => 'required|min:4|String',
+            'title' => 'required|min:4',
             'type' => 'required',
-            'dept_id' => 'required',
+            'department_id' => 'required',
         ]);
-        $fileName = date('mdYHis').'.'.request()->upload_file->getClientOriginalExtension();
-        $request->upload_file->storeAs('public',$fileName);
-        $path = "/storage/" . $fileName;
+        $pdf = $request->upload_file;
+        $fileName = date('mdYHis');
         $title = $request->title;
-        $dept_id = $request->dept_id;
-        $data = ['title' =>$title ,'path' => $path,'dept_id' => $dept_id];
-
+        $dept_id = $request->department_id;
+        $data = ['title' =>$title ,'file' => $fileName,'department_id' => $dept_id];
         switch ($request->type)
         {
             case 'notice':
@@ -65,7 +63,7 @@ class HomeController extends Controller
                 Notification::create($data);
                 break;
         }
-
+        $pdf->storeAs('public',$fileName.".".request()->upload_file->getClientOriginalExtension());
         return redirect('/admin');
     }
 

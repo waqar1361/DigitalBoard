@@ -8,13 +8,8 @@
     <title>{{ env('APP_NAME') }}</title>
 
     <link rel="icon" href="/favicon.jpg">
-    <link rel="stylesheet" href="/css/hover.min.css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/form.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/theme.min.css">
-    <link rel="stylesheet" href="/css/nnb.css">
-    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body>
@@ -24,17 +19,24 @@
 
     @include('layouts.nav')
 
-    @yield('content')
+    <div class="container">
 
-</div>
+        @include('layouts.breads')
+        @yield('content')
+
+    </div>
+
+</div><!--Wrapper End -->
+
+@include('layouts.footer')
+
 {{--Script--}}
-{{--<script src="/js/jquery-3.2.1.min.js"></script>--}}
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/app.js"></script>
 <script src="/js/toaster.min.js"></script>
 <script src="/js/vue.js"></script>
 <script src="/js/script.js"></script>
+
+@yield('script')
 
 </body>
 </html>

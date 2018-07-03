@@ -1,24 +1,33 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-
-    @if(auth()->guest())
-
+<nav class="navbar navbar-expand-md shadow navbar-dark bg-dark mb-3">
+<div class="container">
+    @guest()
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="btn btn-secondary" href="/"><span class="fa fa-lg fa-home"></span></a>
+                <a class="nav-link" href="/"><span class="fa fa-lg fa-home"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/notices">Notices</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/notifications">Notifications</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact Us</a>
             </li>
         </ul>
         <div class="ml-auto">
-            <a class="btn btn-secondary" href="/search"><span class="fa fa-lg fa-search"></span></a>
             <a class="btn btn-secondary" href="/login">Admin</a>
         </div>
 
+    @endguest
 
-    @endif
-
-    @if(auth()->check())
+    @auth()
         <div class="m-auto">
             <h2 class="text-light text-center">@yield('title')</h2>
         </div>
-    @endif
-
+    @endauth
+</div>
 </nav>
