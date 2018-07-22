@@ -6,10 +6,10 @@
                 <a class="nav-link" href="/"><span class="fa fa-lg fa-home"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/notices">Notices</a>
+                <a class="nav-link" href="/documents?notices=true">Notices</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/notifications">Notifications</a>
+                <a class="nav-link" href="/documents?notifications=true">Notifications</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/about">About Us</a>

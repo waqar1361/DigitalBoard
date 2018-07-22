@@ -66,6 +66,21 @@ header img {
   border-radius: 7px !important;
 }
 
+.right-sidebar {
+  max-height: 80vh;
+  min-height: 80vh;
+  overflow-y: auto;
+  padding: 0.5rem 1rem 0.5rem 0;
+}
+
+.right-sidebar .list-group {
+  list-style: none;
+}
+
+.right-sidebar .list-group li {
+  padding: 0.2rem;
+}
+
 .nav-scroller {
   position: relative;
   z-index: 2;
@@ -160,6 +175,30 @@ footer p {
 /*
 *   Form Style
 */
+
+.n-form-control {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 14px;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.4);
+}
+
+.n-form-control:hover {
+  border-color: #333333;
+}
+
+.n-form-control:focus,
+.n-form-control:active {
+  border-color: #007bff;
+}
+
+.error {
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
 
 .form-label-group {
   margin-bottom: 1rem;

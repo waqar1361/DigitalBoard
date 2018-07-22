@@ -15,13 +15,12 @@
                 <div class="form-group">
                     <input type="text" name="q" class="form-control border-success form-control-lg" placeholder="Search">
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-success">Search Notices</button>
-                    <button class="btn btn-success">Search Notifications</button>
+                <div class="form-group d-flex">
+                    <button type="submit" class="btn btn-success ml-auto">Search</button>
                 </div>
             </form>
 
-            <div class="col sideBar">
+            <div class="col right-sidebar bg-light border-left">
                 @include('layouts.right-sidebar')
             </div>
         </div>

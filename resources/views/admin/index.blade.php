@@ -23,7 +23,7 @@
                     <h4 class="card-title m-0">Notices Published</h4>
                 </div>
                 <div class="card-body p-2">
-                    <b>{{ \App\Notice::get()->count() }}</b>
+                    <b>{{ \App\Document::notices()->get()->count() }}</b>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     <h4 class="card-title m-0">Notifications Published</h4>
                 </div>
                 <div class="card-body p-2">
-                    <b>{{ \App\Notification::get()->count() }}</b>
+                    <b>{{ \App\Document::notifications()->get()->count() }}</b>
                 </div>
             </div>
         </div>

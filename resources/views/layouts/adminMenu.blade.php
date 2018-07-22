@@ -5,13 +5,13 @@
         <a class="nav-link" href="/admin">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/admin/publish">Publish</a>
+        <a class="nav-link" href="/documents/create">Publish</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/admin/depts">Dept List</a>
+        <a class="nav-link" href="/departments">Dept List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/admin/dept/create">Add Dept</a>
+        <a class="nav-link" href="/departments/create">Add Dept</a>
     </li>
     <li class="nav-item mt-auto">
         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

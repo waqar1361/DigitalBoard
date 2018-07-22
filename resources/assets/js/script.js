@@ -1,14 +1,10 @@
-let app = new Vue ({
+window.app = app = new Vue ({
     el     : '.wrapper',
     data   : {
         name      : '',
         type      : 'govt',
         url       : '',
         fileLabel : "Choose PDF File",
-        nameError    : false,
-        typeError    : false,
-        titleError: false,
-        fileError : false,
     },
     methods: {
         saveDept ()
@@ -20,17 +16,17 @@ let app = new Vue ({
         },
         successful ()
         {
-            $.toaster ({message: "Saved", priority: 'success'});
+            toastr["success"] ("Department", "successfully added");
             this.name = '';
         },
         failed ()
         {
-            if(error())
-            this.typeError = true;
-            if(error())
-            this.nameError = true;
-            $.toaster ({message: "Failed: Check Your Inputs", priority: 'danger'});
-        },
+            if (error ())
+                this.typeError = true;
+            if (error ())
+                this.nameError = true;
+            toastr ["danger"] ("Error", "check inputs");
+        }
     },//End of methods
     
 });//End of app(Vue)

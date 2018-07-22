@@ -1,35 +1,40 @@
 @extends('layouts.app')
-@section('nav')
-
-    <div class="collapse navbar-collapse" >
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/"><span class="fa fa-home"></span></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link">National Notice Board</a>
-            </li>
-        </ul>
-    </div>
-@endsection
 @section('content')
 
-        {{--<div class="row">--}}
-        <form action="">
-            <div class="row">
-                <div class="col-10">
-                    <div class="form-group">
-                        <input type="text" id="search" class="form-control" name="q" value="{{ $q or '' }}" placeholder="Search">
-                        {{--<label for="search">Search</label>--}}
-                    </div>
-                </div>
-                <div class="col">
-                    <button class="btn btn-success" autofocus><span class="fa fa-search"></span> By Dept</button>
+    <form action="/search">
+        <div class="row">
+            <div class="col-8 offset-1">
+                <div class="form-group">
+                    <input type="text" id="search" class="form-control" name="q" value="{{ $q or '' }}" placeholder="Search">
                 </div>
             </div>
-        </form>
-        {{--</div>--}}
+            <div class="col-1">
+                <button type="submit" class="btn btn-success">Search</button>
+            </div>
+        </div>
+            <span class="offset-1 text-muted">
+                You search for "{{ $q or "noting"}}"
+            </span>
+
+    </form>
+    <hr>
+    <div class="container">
+        @if($results != null)
+            @foreach($results as $row)
+                <div class="card p-2 mb-2">
+                    <a href="/documents/{{ $row->file }}" target="_blank">
+                    <h5 title="subject">{{$row->subject}}</h5>
+                    </a>
+                    <span class="text-muted" title="Information">
+                        <b>Department : </b> {{ $row->department->name }},
+                        <b>Date issued : </b> {{  $row->issued_at->format("dS M, Y") }}
+                    </span>
+                </div>
+            @endforeach
+        @endif
+        @if(!count($results))
+            No result found, Try Again
+        @endif
+    </div>
 
 @endsection

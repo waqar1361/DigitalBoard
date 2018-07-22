@@ -8,7 +8,7 @@ try {
     require('bootstrap')
 } catch (e) {}
 
-import ('./toaster.min');
+require('./toastr');
 window.Vue = Vue;
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

@@ -75,17 +75,13 @@ module.exports = __webpack_require__(2);
 /* 1 */
 /***/ (function(module, exports) {
 
-var app = new Vue({
+window.app = app = new Vue({
     el: '.wrapper',
     data: {
         name: '',
         type: 'govt',
         url: '',
-        fileLabel: "Choose PDF File",
-        nameError: false,
-        typeError: false,
-        titleError: false,
-        fileError: false
+        fileLabel: "Choose PDF File"
     },
     methods: {
         saveDept: function saveDept() {
@@ -99,13 +95,13 @@ var app = new Vue({
             });
         },
         successful: function successful() {
-            $.toaster({ message: "Saved", priority: 'success' });
+            toastr["success"]("Department", "successfully added");
             this.name = '';
         },
         failed: function failed() {
             if (error()) this.typeError = true;
             if (error()) this.nameError = true;
-            $.toaster({ message: "Failed: Check Your Inputs", priority: 'danger' });
+            toastr["danger"]("Error", "check inputs");
         }
     } //End of methods
 

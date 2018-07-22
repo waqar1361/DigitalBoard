@@ -15,18 +15,23 @@ class Department extends Model
         return 'name';
     }
 
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
     public function notices()
     {
-        return $this->hasMany(Notice::class);
+        return $this->hasMany(Document::class)->notices();
     }
 
-    public function Notifications()
+    public function notifications()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(Document::class)->notifications();
     }
 
 
-    public static function scopeDepts($query,$type)
+    public function scopeDepts($query,$type)
     {
         return $query->where('type', $type)->orderBy('name')->get();
     }

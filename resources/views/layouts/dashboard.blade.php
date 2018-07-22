@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row container-fluid">
+    <div class="row">
 
         <div class="col-2">
             @include('layouts.adminMenu')
         </div>
 
-        <div class="col ml-4 mt-4">
+        <div class="col mt-4">
             @yield('dashboard-content')
         </div>
 

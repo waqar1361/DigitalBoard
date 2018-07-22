@@ -1,4 +1,4 @@
-<nav  class="{{ url()->current() == url('/') || request()->segments()[0] == 'admin' ? 'd-none' : '' }} " aria-label="breadcrumb" role="navigation">
+<nav  class="{{ url()->current() == url('/') || request()->segments()[0] == ('admin' or 'document') ? 'd-none' : '' }} " aria-label="breadcrumb" role="navigation">
     <ol class="breadcrumb text-capitalize">
         <li class="breadcrumb-item" aria-current="page">
             <a href="/">home</a>

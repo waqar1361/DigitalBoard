@@ -1,16 +1,20 @@
-<li class="list-group-item">
+<li class="list-group-item text-capitalize">
 
     <strong>{{$item->name}}</strong>
 
     <ul class="m-0">
-        <li>
-            <a href="/notices?dept={{$item->id}}">notices</a>
-            <span class="badge badge-dark badge-pill fa-pull-right">{{ $item->notices->count() }}</span>
-        </li>
-        <li>
-            <a href="/notifications?dept={{$item->id}}">notifications</a>
-            <span class="badge badge-dark badge-pill fa-pull-right">{{ $item->notifications->count() }}</span>
-        </li>
+        @if(count($item->notices))
+            <li>
+                <a href="/documents?notices=true&dept={{urlencode($item->name)}}">notices</a>
+                <span class="badge badge-dark badge-pill fa-pull-right">{{ $item->notices->count() }}</span>
+            </li>
+        @endif
+        @if(count($item->notifications))
+            <li>
+                <a href="/documents?notifications=true&dept={{urlencode($item->name)}}">notifications</a>
+                <span class="badge badge-dark badge-pill fa-pull-right">{{ $item->notifications->count() }}</span>
+            </li>
+        @endif
     </ul>
 
 </li>

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Notice;
 use App\Department;
+use App\Notice;
 use App\Notification;
 use Illuminate\Http\Request;
 
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
+
     /**
      * Create a new controller instance.
      *
@@ -27,33 +27,50 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
-    }
-    public function create()
-    {
-        return view('admin.create');
+        return view('document.home');
     }
 
-    public function list ()
+    public function create()
+    {
+        return view('document.create');
+    }
+
+    public function list()
     {
         $items = Department::all();
         $keys = array_keys($items->toArray()[0]);
-        return view('departments', compact('keys','items'));
+
+        return view('departments', compact('keys', 'items'));
     }
 
-    public function upload(Request $request)
+    public function upload( Request $request )
     {
         $request->validate([
-            'upload_file' => 'required|mimes:pdf|max:1024',
-            'title' => 'required|min:4',
-            'type' => 'required',
-            'department_id' => 'required',
+            'upload_file'   => 'required|mimes:pdf|max:1024',
+            'subject'       => 'required|min:4',
+            'tags'          => 'required|string',
+            'type'          => 'required|in:notice,notification',
+            'department' => 'required|exists:departments,id',
+            'issued_at'     => 'required|date',
         ]);
+
         $pdf = $request->upload_file;
-        $fileName = date('mdYHis');
-        $title = $request->title;
-        $dept_id = $request->department_id;
-        $data = ['title' =>$title ,'file' => $fileName,'department_id' => $dept_id];
+        $fileName = microtime();
+
+
+        $tags = $request->tags;
+        $tags .= " , ".$request->subject;
+        $tags .= ", ".$request->type;
+        $tags .= ", ".Department::find($request->department_id)->name;
+        $tags .= ", ".$request->issued_at;
+        $data = [
+            'subject' => $request->subject,
+            'file' => $fileName,
+            'tags' => $tags,
+            'issued_at' => $request->issued_at,
+            'department_id' => $request->department_id,
+        ];
+
         switch ($request->type)
         {
             case 'notice':
@@ -63,8 +80,9 @@ class HomeController extends Controller
                 Notification::create($data);
                 break;
         }
-        $pdf->storeAs('public',$fileName.".".request()->upload_file->getClientOriginalExtension());
-        return redirect('/admin');
+        $pdf->storeAs('public', $fileName . "." . request()->upload_file->getClientOriginalExtension());
+
+        return redirect('/document');
     }
 
 }

@@ -7,28 +7,24 @@ Auth::routes();
  *      BASE CONTROLLER ROUTES
  */
 Route::get('/', 'PageController@index')->name('home');
-Route::get('/about', 'PageController@aboutUs');
-Route::get('/contact', 'PageController@contactUs');
-Route::get('/search', 'PageController@search');
-Route::get('/download/{path}', 'PageController@download');
-Route::get('dept/{dept}','PageController@byDept');
-/* NOTICES */
-Route::get('/notices', 'PageController@notices');
-Route::get('/notices/{dept}/{path}', 'PageController@pdf');
-/* NOTIFICATIONS */
-Route::get('/notifications', 'PageController@notifications');
-Route::get('/notifications/{dept}/{path}', 'PageController@pdf');
+Route::get('about', 'PageController@aboutUs');
+Route::get('contact', 'PageController@contactUs');
+Route::get('search', 'PageController@search');
+Route::get('admin','AdminController@index');
 
 /*
- *      HOME CONTROLLER ROUTES
- *      NEED AUTH USER
+ *      DOCUMENTS
  */
 
-Route::get('/admin', 'HomeController@index');
-Route::get('/admin/publish', 'HomeController@create');
-Route::post('/upload', 'HomeController@upload');
+Route::get('documents','DocumentController@index');
+Route::get('documents/create','DocumentController@create');
+Route::post('documents','DocumentController@store');
+Route::get('documents/{document}','DocumentController@show');
 
+/*
+ *      DEPARTMENT
+ */
 
-Route::get('/admin/depts', 'DeptController@list');
-Route::get('/admin/dept/create', 'DeptController@create');
-Route::post('/dept/store', 'DeptController@store');
+Route::get('departments','DepartmentController@index');
+Route::get('departments/create','DepartmentController@create');
+Route::post('departments','DepartmentController@store');

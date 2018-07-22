@@ -3,7 +3,7 @@
 
 @section('dashboard-content')
 
-    <form action="/dept/store" class="m-auto col-6"  id="form" method="post" @submit.prevent="saveDept">
+    <form action="/departments" class="m-auto col-6"  id="form" method="post" @submit.prevent="saveDept">
         <div class="form-label-group">
             <input type="text" id="name" name="name" :class="{ 'is-invalid' :  nameError  }" class="form-control" v-model="name" placeholder="Name" @keydown="errors=false" autofocus required>
             <label for="name">Name</label>
