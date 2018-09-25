@@ -11,7 +11,7 @@ class DocumentController extends Controller {
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->only(['create', 'store']);
     }
 
     public function index( Request $request, Documents $documents )
@@ -27,6 +27,11 @@ class DocumentController extends Controller {
 
         return view('document.index', compact('rows'));
 
+    }
+
+    public function browse( Document $document )
+    {
+        return view('document.index', compact('document'));
     }
 
     public function create()
@@ -51,6 +56,12 @@ class DocumentController extends Controller {
         return response()->file($path);
     }
 
+    public function download( Document $document )
+    {
+        $path = "storage/" . $document->file . ".pdf";
+
+        return response()->download($path);
+    }
 
     public function edit( Document $document )
     {

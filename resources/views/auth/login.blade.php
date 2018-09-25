@@ -10,7 +10,9 @@
     <title>Admin</title>
 
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
     <link href="/css/signin.css" rel="stylesheet">
+
 
 </head>
 
@@ -20,13 +22,13 @@
     {{ csrf_field() }}
 
     <div class="text-center mb-2">
-        <img class="mb-4 outset-shadow" src="/logo.jpg" alt="Logo" width="120" height="120">
+        <img class="mb-4 rounded outset-shadow" src="/logo.jpg" alt="Logo" width="120" height="120">
     </div>
 
     <h4 class="mb-4">Sign in as Admin to continue</h4>
 
     <div class="form-label-group">
-        <input type="email" id="Email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email address" required autofocus>
+        <input type="email" id="Email" class="form-control-lg form-control" name="email" value="{{ old('email') }}" placeholder="Email address" required autofocus>
         <label for="Email">Email address</label>
         @if ($errors->has('email'))
             <span class="help-block">
@@ -36,7 +38,7 @@
     </div>
 
     <div class="form-label-group">
-        <input type="password" id="Password" name="password" class="form-control" placeholder="Password" required>
+        <input type="password" id="Password" name="password" class="form-control-lg form-control" placeholder="Password" required>
         <label for="Password">Password</label>
         @if ($errors->has('password'))
             <span class="help-block">
@@ -51,7 +53,7 @@
         </label>
     </div>
     <div class="form-group">
-        <button class="btn btn-lg btn-secondary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
     </div>
     <div class="text-center">
         <a href="/">Home</a>

@@ -1,19 +1,34 @@
 @extends('layouts.app')
 @section('content')
 
-    <h2>Notices / Notifications</h2>
-    @foreach($rows as $row)
-        <div class="card p-2 mb-2">
-            <a href="/documents/{{ $row->file }}" target="_blank">
-                <h5 title="subject">{{$row->subject}}</h5>
-            </a>
-            <span class="text-muted" title="Information">
-                <b>Department : </b> {{ $row->department->name }},
-                <b>Date issued : </b> {{  $row->issued_at->format("dS M, Y") }}
-            </span>
-        </div>
-    @endforeach
-    @if(!$rows->first())
-        There's noting to show
-    @endif
+    <h2 class="text-light mb-4">{{ $document->subject }}</h2>
+    <div class="col-6 p-0 text-capitalize">
+        <table class="table table-bordered">
+            <tr class="table-active">
+                <th>Type :</th>
+                <th>department :</th>
+            </tr>
+            <tr>
+                <td>{{ $document->type }}</td>
+                <td>{{ \App\Department::find($document->department_id)->name }}</td>
+            </tr>
+            <tr class="table-active">
+                <th>date issued :</th>
+                <th>size :</th>
+            </tr>
+            <tr>
+                <td>{{ $document->issued_at->format("M, d, Y") }}</td>
+                <td>{{ round(filesize("storage/" . $document->file . ".pdf")/1000000,2) }} MB</td>
+            </tr>
+            <tr class="table-active">
+                <th>View :</th>
+                <th>Download :</th>
+            </tr>
+            <tr>
+                <td><a href="/documents/{{ $document->file }}">open</a></td>
+                <td><a href="/download/{{ $document->file }}">download</a></td>
+            </tr>
+        </table>
+    </div>
+
 @endsection

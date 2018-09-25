@@ -5,7 +5,7 @@
 
     <form action="/departments" class="m-auto col-6"  id="form" method="post" @submit.prevent="saveDept">
         <div class="form-label-group">
-            <input type="text" id="name" name="name" :class="{ 'is-invalid' :  nameError  }" class="form-control" v-model="name" placeholder="Name" @keydown="errors=false" autofocus required>
+            <input type="text" id="name" name="name" :class="{ 'is-invalid' :  nameError  }" class="form-control form-control-lg" v-model="name" placeholder="Name" @keydown="errors=false" autofocus required>
             <label for="name">Name</label>
         </div>
         <div class="form-group">

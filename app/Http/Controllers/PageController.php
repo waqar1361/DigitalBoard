@@ -12,9 +12,10 @@ class PageController extends Controller {
 
     public function index()
     {
-        if (auth()->check())
+        if ( auth()->check() )
             return redirect('admin');
         $items = Department::all()->sortBy('name');
+
         return view('home', compact('items'));
     }
 
@@ -28,31 +29,46 @@ class PageController extends Controller {
         return view('contact');
     }
 
-    public function search( Request $request)
+    public function search( Request $request )
     {
-        $q = $request->q;
-        if (strlen($q) < 3)
-        {
-            $results = null;
-            return view('search', compact('q', 'results'));
-        }
-
-        $keywords = explode(' ', $q);
+        $search = $request->search;
+        $type = $request->type;
+        $sort = $request->sort;
+        $dept = $request->dept;
         $find = Document::query();
-
-        foreach ($keywords as $key){
-            if ($key != ("notices" or "notice" or "notification" or "notifications"))
+        /***        Search      ***/
+        if ( $search !== null )
+        {
+            $keywords = explode(' ', $search);
+            foreach ($keywords as $key)
+            {
                 $find->orWhere("tags", "like", "%$key%");
-            if($key == ( "notice" or "notices"))
-                $find->where("tags","like", "%$key%");
-            if($key == ("notification" or "notifications"))
-                $find->where( "tags", "like","%$key%");
+            }
         }
+
+        /***        Department      ***/
+        if ($dept != 'all')
+            $find->where('tags','like', "%$dept%" );
+
+        /***        Type      ***/
+        if ($type == 'notice')
+            $find->where('type','notice');
+        if ($type == 'notification')
+            $find->where('type','notification');
+
+        /***     Sort By      ***/
+
+        if ($sort == 'latest')
+            $find->orderBy("created_at");
+        if ($sort == 'oldest')
+            $find->orderByDesc("created_at");
+        if ($sort == 'alph')
+            $find->orderBy('subject');
+
 
         $results = $find->get();
 
-
-        return view('search', compact('q', 'results'));
+        return view('search', compact( 'results','search','sort','dept','type'));
 
     }
 

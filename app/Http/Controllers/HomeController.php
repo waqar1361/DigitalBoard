@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
-use App\Notice;
-use App\Notification;
+use App\Document;
 use Illuminate\Http\Request;
 
 
@@ -55,7 +54,7 @@ class HomeController extends Controller {
         ]);
 
         $pdf = $request->upload_file;
-        $fileName = microtime();
+        $fileName = preg_replace(['/\s+/','/\./'], '', microtime());
 
 
         $tags = $request->tags;
@@ -66,20 +65,14 @@ class HomeController extends Controller {
         $data = [
             'subject' => $request->subject,
             'file' => $fileName,
+            'type' => $request->type,
             'tags' => $tags,
             'issued_at' => $request->issued_at,
             'department_id' => $request->department_id,
         ];
 
-        switch ($request->type)
-        {
-            case 'notice':
-                Notice::create($data);
-                break;
-            case 'notification':
-                Notification::create($data);
-                break;
-        }
+       Document::create($data);
+
         $pdf->storeAs('public', $fileName . "." . request()->upload_file->getClientOriginalExtension());
 
         return redirect('/document');

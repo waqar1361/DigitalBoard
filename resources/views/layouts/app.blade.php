@@ -9,6 +9,8 @@
 
     <link rel="icon" href="/favicon.jpg">
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    {{--<link rel="stylesheet" href="/css/theme2.css">--}}
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -21,7 +23,6 @@
 
     <div class="container">
 
-        @include('layouts.breads')
         @yield('content')
 
     </div>

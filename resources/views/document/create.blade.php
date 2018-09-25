@@ -8,20 +8,20 @@
 
         <div class="form-group">
             <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" class="{{ $errors->has('subject')? "border-danger" : "" }} n-form-control" value="{{ old('subject') }}" placeholder="Subject of document" autofocus>
+            <input type="text" id="subject" name="subject" class="{{ $errors->has('subject')? "is-invalid" : "" }} form-control" value="{{ old('subject') }}" placeholder="Subject of document" autofocus>
             @if ($errors->has('subject'))
-                <strong class="error">{{ $errors->first('subject') }}</strong>
+                <strong class="invalid-feedback">{{ $errors->first('subject') }}</strong>
             @endif
         </div>
 
         <div class="form-group">
             <label for="tags">Tags</label>
-            <input type="text" id="tags" name="tags" class="{{ $errors->has('tags')? "border-danger" : "" }} n-form-control" value="{{ old('tags') }}" placeholder="Tags like Important etc" >
+            <input type="text" id="tags" name="tags" class="{{ $errors->has('tags')? "is-invalid" : "" }} form-control" value="{{ old('tags') }}" placeholder="Tags like Important etc" >
             <small id="passwordHelpBlock" class="form-text text-muted">
                 Add tags for search, separate each by ","
             </small>
             @if ($errors->has('tags'))
-                <strong class="error">{{ $errors->first('tags') }}</strong>
+                <strong class="invalid-feedback">{{ $errors->first('tags') }}</strong>
             @endif
         </div>
 
