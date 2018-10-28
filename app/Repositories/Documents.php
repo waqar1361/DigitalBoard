@@ -37,4 +37,5 @@ class Documents {
         $id = Department::where('name',$name)->get()->first()->id;
         return Document::latest()->where('department_id',$id)->notifications()->get();
     }
+    
 }

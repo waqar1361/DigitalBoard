@@ -1,8 +1,8 @@
-<li class="list-group-item text-capitalize">
+<li class="list-group-item text-capitalize pb-0">
 
     <strong class="text-primary">{{$item->name}}</strong>
 
-    <ul class="m-0">
+    <ul class="m-0 list-unstyled">
         @if(count($item->notices))
             <li>
                 <a href="/browse?type=notice&dept={{urlencode($item->name)}}">notices</a>

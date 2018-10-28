@@ -5,77 +5,115 @@ namespace App\Http\Controllers;
 use App\Document;
 use App\Http\Requests\DocumentFormRequest;
 use App\Repositories\Documents;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller {
-
+    
     public function __construct()
     {
         $this->middleware('auth')->only(['create', 'store']);
     }
-
-    public function index( Request $request, Documents $documents )
+    
+    public function index(Request $request, Documents $documents)
     {
-        if ( $request->has(['year', 'month']) )
+        if ($request->has(['year', 'month']))
             $rows = $documents->filter($request->only(['year', 'month']));
-        if ( $request->notices )
+        if ($request->notices)
             $rows = $documents->notices($request->dept);
-        if ( $request->notifications )
+        if ($request->notifications)
             $rows = $documents->notifications($request->dept);
-        if ( !isset($rows) )
+        if ( !isset($rows))
             $rows = Document::latest()->get();
-
+        
         return view('document.index', compact('rows'));
-
+        
     }
-
-    public function browse( Document $document )
+    
+    public function show(Document $document)
     {
         return view('document.index', compact('document'));
     }
-
+    
     public function create()
     {
         return view('document.create');
     }
-
-    public function store( DocumentFormRequest $request )
+    
+    public function store(DocumentFormRequest $request)
     {
         $request->ready();
         $request->persist();
         $request->storeFile();
-
+        
         return redirect('/admin');
     }
-
-
-    public function show( Document $document )
+    
+    
+    public function open(Document $document)
     {
-        $path = "storage/" . $document->file . ".pdf";
-
+        $path = "storage/" . $document->file . "." . $document->extension;
+        
         return response()->file($path);
     }
-
-    public function download( Document $document )
+    
+    public function download(Document $document)
     {
-        $path = "storage/" . $document->file . ".pdf";
-
+        $path = "storage/" . $document->file . "." . $document->extension;
+        
         return response()->download($path);
     }
-
-    public function edit( Document $document )
+    
+    public function browse(Request $request)
     {
-        //
+        $search = $request->search;
+        $type = $request->type;
+        $sort = $request->sort;
+        $dept = $request->dept;
+        $year = $request->year;
+        $month = $request->month;
+        $find = Document::query();
+        
+        /***        Archives      ***/
+        if ($request->has('month') and $request->month != 'all')
+            $find->whereMonth('issued_at', Carbon::parse($request->month)->month);
+        if ($request->has('year') and $request->year != 'all')
+            $find->whereYear('issued_at', $request->year);
+        
+        /***        Search      ***/
+        if ($search !== null)
+        {
+            $keywords = explode(' ', $search);
+            foreach ($keywords as $key)
+            {
+                $find->orWhere("tags", "like", "%$key%");
+            }
+        }
+        
+        /***        Department      ***/
+        if ($dept != 'all')
+            $find->where('tags', 'like', "%$dept%");
+        
+        /***        Type      ***/
+        if ($type == 'notice')
+            $find->where('type', 'notice');
+        if ($type == 'notification')
+            $find->where('type', 'notification');
+        
+        /***     Sort By      ***/
+        
+        if ($sort == 'latest')
+            $find->orderBy("created_at");
+        if ($sort == 'oldest')
+            $find->orderByDesc("created_at");
+        if ($sort == 'alph')
+            $find->orderBy('subject');
+        
+        
+        $results = $find->paginate(10);
+        
+        return view('browse', compact('results', 'search', 'sort', 'dept', 'type', 'year', 'month'));
+        
     }
-
-
-    public function update( Request $request, Document $document )
-    {
-        //
-    }
-
-    public function destroy( Document $document )
-    {
-        //
-    }
+    
 }

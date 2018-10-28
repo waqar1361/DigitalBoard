@@ -1,0 +1,46 @@
+:root {
+  --input-padding-x : .75rem;
+  --input-padding-y : .75rem;
+}
+
+body {
+  cursor     : default;
+  font-size  : 1.1rem;
+  min-height : 100vh;
+}
+
+.wrapper {
+  min-height : 88vh;
+}
+
+//h1,h2,h3,h4,h5 {
+//  font-family : Felipe, sans-serif;
+//}
+.siteName {
+  //font-family : Felipe, sans-serif;
+  font-size   : 2.3rem;
+}
+
+footer {
+  padding    : 1rem;
+  margin-top : 2rem;
+  p {
+    margin : 0;
+  }
+}
+
+::-webkit-scrollbar {
+  width              : 2px;
+  height             : 2px;
+  background-color   : transparent;
+  -webkit-box-shadow : inset 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background         : #333;
+  -webkit-box-shadow : inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background : $primary;
+}

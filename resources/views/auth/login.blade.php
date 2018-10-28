@@ -58,7 +58,7 @@
     <div class="text-center">
         <a href="/">Home</a>
     </div>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-{{date('Y')}}</p>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; {{date('Y')}}</p>
 </form>
 </body>
 </html>

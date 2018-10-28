@@ -1,0 +1,41 @@
+@media (max-width : 576px) {
+  .row {
+    margin : 0;
+  }
+  .d-xs-none {
+    display : none;
+  }
+  .col, .col-2 {
+    padding : 0 2px;
+  }
+  .container {
+    padding : 0 5px;
+  }
+  .logo {
+    font-size : 1.6rem;
+  }
+  .siteName {
+    font-size : 1.4rem;
+  }
+  h3 {
+    font-size     : 1.2rem;
+    margin-bottom : 0.3rem;
+  }
+  hr {
+    margin : 0.5rem 0;
+  }
+
+}
+
+@media (min-width : 768px) {
+  .sideBar {
+    min-height : 80vh;
+    max-height : 80vh;
+  }
+}
+
+@media (min-width : 992px) {
+}
+
+@media (min-width : 1200px) {
+}

@@ -58,10 +58,10 @@
         </div>
 
         <div class="form-group">
-            <label for="">Select PDF or Image</label>
+            <label for="">Select File PDF or Image or Docx</label>
             <div class="custom-file">
                 <input type="file" name="upload_file" class="custom-file-input {{ $errors->has('upload_file')? "is-invalid":"" }}" @change="fileLabel = $event.target.files[0].name" placeholder="Select your file">
-                <label class="custom-file-label" for="validatedCustomFile">@{{ fileLabel }}</label>
+                <label class="custom-file-label" for="validatedCustomFile">Choose Your File</label>
             @if ($errors->has('upload_file'))
                 <strong class="invalid-feedback">{{ $errors->first('upload_file') }}</strong>
             @endif

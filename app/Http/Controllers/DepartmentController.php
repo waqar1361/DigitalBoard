@@ -14,11 +14,7 @@ class DepartmentController extends Controller {
 
     public function index()
     {
-        $govt_depts = Department::depts('govt');
-        $semi_govt_depts = Department::depts('semi-govt');
-        $pvt_depts = Department::depts('private');
-
-        return view('department.index', compact('govt_depts','semi_govt_depts','pvt_depts'));
+        return view('department.index');
     }
 
     public function create()

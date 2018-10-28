@@ -1,6 +1,8 @@
 <ul class="nav bg-dark col-2 flex-column sidebar" id="sidebar">
-    <h1 class="container-fluid text-light"><b>NNB</b>.<i>pk</i></h1>
-
+  
+    
+    <img src="/logo.jpg" alt="{{config('app.name')}}" class="w-50 mx-auto my-3 rounded-circle">
+    
     <li class="nav-item" title="Main Screen">
         <a class="nav-link" href="/admin">Main</a>
     </li>
