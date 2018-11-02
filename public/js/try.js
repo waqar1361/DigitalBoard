@@ -1,1 +1,0 @@
-toastr ['danger'] ("Error", "Invalid Input(s)");

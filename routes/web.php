@@ -1,15 +1,27 @@
 <?php
 
-
 Auth::routes();
 
 /*
- *      BASE CONTROLLER ROUTES
+ *      BASIC ROUTES
  */
+
 Route::get('/', 'PageController@index')->name('home');
-//Route::get('about', 'PageController@aboutUs');
-//Route::get('contact', 'PageController@contactUs');
+Route::get('faqs', 'FAQController@index');
+Route::get('faqs/{faq}', 'FAQController@show');
 Route::get('admin', 'PageController@admin');
+
+
+/*
+ *      FAQ's ROUTES
+ */
+
+Route::get('admin/faqs', 'PageController@faqs');
+Route::get('support', 'FAQController@createQuestion');
+Route::post('support', 'FAQController@storeQuestion');
+Route::get('admin/faqs/{faq}', 'FAQController@createAnswer');
+Route::post('faqs/{faq}/answer', 'FAQController@storeAnswer');
+
 
 /*
  *      DOCUMENTS
@@ -18,8 +30,7 @@ Route::get('admin', 'PageController@admin');
 Route::get('browse', 'DocumentController@browse');
 Route::get('browse/{document}', 'DocumentController@show');
 Route::get('download/{document}', 'DocumentController@download');
-
-Route::get('documents', 'DocumentController@index');
+Route::redirect('documents', 'browse');
 Route::get('documents/create', 'DocumentController@create');
 Route::post('documents', 'DocumentController@store');
 Route::get('documents/{document}', 'DocumentController@open');

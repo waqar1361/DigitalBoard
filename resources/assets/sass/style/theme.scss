@@ -1,0 +1,20 @@
+.navbar {
+  background : $bg-navbar;
+}
+
+.sidebar, .sideBar {
+  background : $bg-sidebar;
+}
+
+.share {
+  background : $bg-share;
+}
+
+footer {
+  a {
+    color : $link-color;
+  }
+  a:hover {
+    color : darken($link-color, 12%);
+  }
+}

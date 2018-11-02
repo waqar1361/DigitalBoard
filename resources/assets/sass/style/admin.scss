@@ -16,20 +16,19 @@
   padding-right : 5px;
   position      : fixed;
   top           : 0;
-  border-right  : 3px solid $success;
-
+  border        : 1px solid rgba(0, 0, 0, 0.6);
   .nav-item:last-child {
     margin : 0;
   }
   .nav-item {
     padding       : 5px 15px;
-    background    : $success;
+    background    : rgba($bg-link-sidebar, .7);
     font-size     : 1rem;
     border-radius : 0 19px 19px 0;
     margin-bottom : 3px;
   }
   .nav-item:hover {
-    background : $primary;
+    background : darken($bg-link-sidebar, 5%);
   }
   .nav-link {
     padding : 3px;

@@ -1,7 +1,7 @@
 @extends("layouts.dashboard")
 @section('title', 'Add new Department')
 
-@section('dashboard-content')
+@section('content')
 
     <form action="/departments" class="m-auto col-6"  id="form" method="post" @submit.prevent="saveDept">
         <div class="form-label-group">

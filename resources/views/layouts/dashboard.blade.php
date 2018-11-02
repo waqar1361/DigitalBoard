@@ -7,18 +7,16 @@
     
     <title>{{ config('app.name') }}</title>
     
-    <link rel="icon" href="/favicon.jpg">
-    <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/theme.css">
-    <link rel="stylesheet" href="/css/style.css">
-
+    <link rel="icon" href="{{asset('favicon.jpg')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    
 </head>
 <body>
 <div class="wrapper">
     
     <div class="container">
-        <nav class="navbar shadow navbar-dark bg-dark fixed-top">
-            <h2 class="col-8 m-auto text-light text-center">@yield('title')</h2>
+        <nav class="navbar shadow navbar-dark fixed-top">
+            <h2 class="col-6 m-auto text-center py-2">@yield('title')</h2>
         </nav>
         
         <div class="row">
@@ -28,7 +26,7 @@
             </div>
             
             <div class="col dashboard-content">
-                @yield('dashboard-content')
+                @yield('content')
             </div>
         
         </div>
@@ -37,14 +35,8 @@
 
 </div><!--Wrapper End -->
 
-{{--@include('layouts.footer')--}}
-
-{{--Script--}}
-<script src="/js/app.js"></script>
-<script src="/js/toaster.js"></script>
-<script src="/js/vue.js"></script>
-<script src="/js/script.js"></script>
-
+<script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/toaster.js')}}"></script>
 </body>
 </html>
 

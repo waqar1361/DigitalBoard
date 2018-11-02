@@ -10,9 +10,9 @@
                 </div>
             </div>
             <div class="col-2">
-                <button type="submit" class="btn btn-block btn-lg btn-success">
+                <button type="submit" class="btn btn-block px-md-0 btn-lg btn-primary">
                     <span class="fa fa-search"></span>
-                    <span class="d-sm-none d-xs-none">Search</span>
+                    <span class="d-sm-none d-md-inline d-xs-none">Search</span>
                 </button>
             </div>
         </div>
@@ -99,7 +99,7 @@
             No result found, Try Again
         @endif
         @foreach($results as $row)
-            <div class="card bg-dark p-2 mb-2">
+            <div class="card p-2 mb-2">
                 <a href="browse/{{ $row->file }}">
                     <h5 title="subject">{{$row->subject}}</h5>
                 </a>

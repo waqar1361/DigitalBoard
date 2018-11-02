@@ -1,4 +1,4 @@
-<ul class="nav bg-dark col-2 flex-column sidebar" id="sidebar">
+<ul class="nav col-2 flex-column sidebar" id="sidebar">
   
     
     <img src="/logo.jpg" alt="{{config('app.name')}}" class="w-50 mx-auto my-3 rounded-circle">
@@ -14,6 +14,9 @@
     </li>
     <li class="nav-item" title="View all departments">
         <a class="nav-link" href="/departments">Departments</a>
+    </li>
+    <li class="nav-item" title="View all departments">
+        <a class="nav-link" href="/admin/faqs">FAQ's</a>
     </li>
 
     <li class="nav-item mt-auto">

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md shadow navbar-dark bg-dark mb-3">
+<nav class="navbar navbar-expand-md shadow navbar-dark mb-3">
     
         <a class="navbar-brand logo" href="/" title="National Notices Board">{{config('app.name')}}</a>
         

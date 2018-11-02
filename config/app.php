@@ -65,7 +65,7 @@ return [
     |
     */
     
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Karachi',
     
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
     
+        
+        // CUSTOM PACKAGES
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
     ],
     
     /*
@@ -226,10 +229,13 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
         
-        /**My Models**/
+        // CUSTOM PACKAGES
+        'Share' => Jorenvh\Share\ShareFacade::class,
         
+        /**My Models**/
         'Dept' => \App\Department::class,
         'Doc'  => \App\Document::class,
+        'FAQ'  => \App\faq::class,
     ],
 
 ];

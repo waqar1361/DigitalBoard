@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('title', 'Publish a new Notice/Notification')
 
-@section('dashboard-content')
+@section('content')
     {{ $massage or "" }}
     <form class="form-signin" action="/documents" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}

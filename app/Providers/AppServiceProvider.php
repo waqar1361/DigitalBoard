@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Department;
 use App\Document;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +11,7 @@ class AppServiceProvider extends ServiceProvider {
     {
         view()->composer('layouts.sidebar', function ($view) {
             $view->with([
-                'years'     => Document::years(),
+                'years'    => Document::years(),
                 'archives' => Document::archives()
             ]);
         });

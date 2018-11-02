@@ -2,10 +2,20 @@
 
 @section('title', 'Welcome to Admin panel')
 
-@section('dashboard-content')
-
+@section('content')
+    
     <div class="row">
-
+        
+        <div class="col">
+            <div class="card text-center mb-3">
+                <div class="card-header p-2">
+                    <h4 class="card-title m-0"><a href="/admin/faqs">Questions to be Answered</a></h4>
+                </div>
+                <div class="card-body p-2">
+                    <b>{{ FAQ::questions()->get()->count() }}</b>
+                </div>
+            </div>
+        </div>
         <div class="col">
             <div class="card text-center mb-3">
                 <div class="card-header p-2">
@@ -16,7 +26,11 @@
                 </div>
             </div>
         </div>
-
+    
+    </div>
+    
+    <div class="row">
+        
         <div class="col">
             <div class="card text-center mb-3">
                 <div class="card-header p-2">
@@ -27,7 +41,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="col">
             <div class="card text-center mb-3">
                 <div class="card-header p-2">
@@ -38,7 +52,7 @@
                 </div>
             </div>
         </div>
-
-
+    
     </div>
+
 @endsection

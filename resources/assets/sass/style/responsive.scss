@@ -13,8 +13,9 @@
   }
   .logo {
     font-size : 1.6rem;
+    padding   : 5px 0;
   }
-  .siteName {
+  h2 {
     font-size : 1.4rem;
   }
   h3 {
@@ -27,15 +28,14 @@
 
 }
 
-@media (min-width : 768px) {
-  .sideBar {
-    min-height : 80vh;
-    max-height : 80vh;
+@media (max-width : 768px) {
+  .logo {
+    padding : 10px 0;
   }
 }
 
-@media (min-width : 992px) {
-}
-
-@media (min-width : 1200px) {
+@media (min-width : 767px) {
+  .sideBar {
+    min-height : 80vh;
+  }
 }

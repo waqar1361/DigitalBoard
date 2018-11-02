@@ -109,6 +109,18 @@ var app = new Vue({
 
 }); //End of app(Vue)
 
+$(window).scroll(function () {
+    if ($(this).scrollTop()) {
+        $('#toTop').fadeIn();
+    } else {
+        $('#toTop').fadeOut();
+    }
+});
+
+$("#toTop").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, 500);
+});
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {

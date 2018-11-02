@@ -50,4 +50,9 @@ class Document extends Model {
             ->get();
     }
     
+    public function fileSize()
+    {
+        return round(filesize("storage/" . $this->file . ".pdf") / 1024 ** 2, 2);
+    }
+    
 }

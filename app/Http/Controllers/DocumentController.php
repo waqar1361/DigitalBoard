@@ -12,22 +12,8 @@ class DocumentController extends Controller {
     
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth')->only(['create', 'store']);
-    }
-    
-    public function index(Request $request, Documents $documents)
-    {
-        if ($request->has(['year', 'month']))
-            $rows = $documents->filter($request->only(['year', 'month']));
-        if ($request->notices)
-            $rows = $documents->notices($request->dept);
-        if ($request->notifications)
-            $rows = $documents->notifications($request->dept);
-        if ( !isset($rows))
-            $rows = Document::latest()->get();
-        
-        return view('document.index', compact('rows'));
-        
     }
     
     public function show(Document $document)
@@ -48,7 +34,6 @@ class DocumentController extends Controller {
         
         return redirect('/admin');
     }
-    
     
     public function open(Document $document)
     {
@@ -76,7 +61,7 @@ class DocumentController extends Controller {
         
         /***        Archives      ***/
         if ($request->has('month') and $request->month != 'all')
-            $find->whereMonth('issued_at', Carbon::parse($request->month)->month);
+            $find->whereMonth('issued_at', Carbon::parse('1 ' . $request->month)->month);
         if ($request->has('year') and $request->year != 'all')
             $find->whereYear('issued_at', $request->year);
         
