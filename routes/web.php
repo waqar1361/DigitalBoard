@@ -9,14 +9,14 @@ Auth::routes();
 Route::get('/', 'PageController@index')->name('home');
 Route::get('faqs', 'FAQController@index');
 Route::get('faqs/{faq}', 'FAQController@show');
-Route::get('admin', 'PageController@admin');
+Route::get('admin', 'PageController@admin')->name('admin');
 
 
 /*
  *      FAQ's ROUTES
  */
 
-Route::get('admin/faqs', 'PageController@faqs');
+Route::get('admin/faqs', 'PageController@faqs')->name('adminFaqs');
 Route::get('support', 'FAQController@createQuestion');
 Route::post('support', 'FAQController@storeQuestion');
 Route::get('admin/faqs/{faq}', 'FAQController@createAnswer');
@@ -40,8 +40,8 @@ Route::get('documents/{document}', 'DocumentController@open');
  *      DEPARTMENT
  */
 
-Route::get('departments', 'DepartmentController@index');
-Route::get('departments/create', 'DepartmentController@create');
+Route::get('departments', 'DepartmentController@index')->name('Departments');
+Route::get('departments/create', 'DepartmentController@create')->name('createDepartment');
 Route::post('departments', 'DepartmentController@store');
 
 

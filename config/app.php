@@ -167,6 +167,11 @@ return [
         /*
          * Package Service Providers...
          */
+    
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
+        DevMarketer\EasyNav\EasyNavServiceProvider::class,
+        
+        
         
         /*
          * Application Service Providers...
@@ -176,10 +181,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-    
         
-        // CUSTOM PACKAGES
-        Jorenvh\Share\Providers\ShareServiceProvider::class,
+        
     ],
     
     /*
@@ -230,12 +233,13 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
         
         // CUSTOM PACKAGES
-        'Share' => Jorenvh\Share\ShareFacade::class,
+        'Share'        => Jorenvh\Share\ShareFacade::class,
+        'Nav'          => DevMarketer\EasyNav\EasyNavFacade::class,
         
         /**My Models**/
-        'Dept' => \App\Department::class,
-        'Doc'  => \App\Document::class,
-        'FAQ'  => \App\faq::class,
+        'Dept'         => App\Department::class,
+        'Doc'          => App\Document::class,
+        'FAQ'          => App\faq::class,
     ],
 
 ];

@@ -8,10 +8,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navBar">
             <ul class="navbar-nav ml-auto" >
-                <li class="nav-item">
+                <li class="nav-item {{ Nav::isRoute('home') }} ">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Nav::hasSegment('browse') }} ">
                     <a class="nav-link" href="/browse">Browse</a>
                 </li>
                 <li class="nav-item">

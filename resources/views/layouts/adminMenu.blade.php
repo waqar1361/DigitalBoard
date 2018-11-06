@@ -3,19 +3,19 @@
     
     <img src="/logo.jpg" alt="{{config('app.name')}}" class="w-50 mx-auto my-3 rounded-circle">
     
-    <li class="nav-item" title="Main Screen">
+    <li class="nav-item {{ Nav::isRoute('admin', 'bg-secondary') }}" title="Main Screen">
         <a class="nav-link" href="/admin">Main</a>
     </li>
-    <li class="nav-item" title="Publish new Notice/Notification">
+    <li class="nav-item {{ Nav::isResource('create', 'documents','bg-secondary') }}" title="Publish new Notice/Notification">
         <a class="nav-link" href="/documents/create">Publish</a>
     </li>
-    <li class="nav-item" title="Add New Department">
+    <li class="nav-item {{ Nav::isRoute('createDepartment', 'bg-secondary') }}" title="Add New Department">
         <a class="nav-link" href="/departments/create">Add Department</a>
     </li>
-    <li class="nav-item" title="View all departments">
+    <li class="nav-item {{ Nav::isRoute('Departments', 'bg-secondary') }}" title="View all departments">
         <a class="nav-link" href="/departments">Departments</a>
     </li>
-    <li class="nav-item" title="View all departments">
+    <li class="nav-item {{ Nav::isRoute('adminFaqs', 'bg-secondary') }}" title="View all departments">
         <a class="nav-link" href="/admin/faqs">FAQ's</a>
     </li>
 
