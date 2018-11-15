@@ -9,6 +9,7 @@
     
     <link rel="icon" href="{{asset("favicon.jpg")}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     
 </head>
 <body>
@@ -18,12 +19,15 @@
     <main>
         @yield('content')
     </main>
+   
     @include('layouts.footer')
 
 </div>
 
 <script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/script.js')}}"></script>
 <script src="{{ asset('js/share.js') }}"></script>
 @yield('script')
+
 </body>
 </html>

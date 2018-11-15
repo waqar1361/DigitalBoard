@@ -44,3 +44,7 @@ $(window).scroll(function() {
 $("#toTop").click(function() {
     $("html, body").animate({scrollTop: 0}, 500);
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

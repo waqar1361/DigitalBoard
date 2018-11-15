@@ -24,9 +24,9 @@
             <h3>Follow Us</h3>
             <hr>
             <nav class="d-flex text-justify">
-                <a class="px-1 brand facebook nav-link" href="#"><span class="fab fa-3x fa-facebook"></span></a>
-                <a class="px-1 brand plus nav-link" href="#"><span class="fab fa-3x fa-google-plus-square"></span></a>
-                <a class="px-1 brand github nav-link" href="#"><span class="fab fa-3x fa-github-square"></span></a>
+                <a class="py-0 px-1 brand rounded facebook nav-link" href="#"><span class="fab fa-3x fa-facebook"></span></a>
+                <a class="py-0 px-1 brand rounded plus nav-link" href="#"><span class="fab fa-3x fa-google-plus-square"></span></a>
+                <a class="py-0 px-1 brand rounded github nav-link" href="#"><span class="fab fa-3x fa-github-square"></span></a>
             </nav>
         </div>
     </div>
@@ -35,5 +35,5 @@
     <p>Contact : <a href="mailto:waqarqadri6@gmail.com">waqarqadri6@gmail.com</a></p>
     <hr>
     <p>&copy; {{ date("Y") }} All rights reserved. Our <a href="#">terms</a> and <a href="#">policy</a></p>
-    <toTop id="toTop" class="fa" style="display: none"></toTop>
+    <a id="toTop" class="fa" style="display: none"></a>
 </footer>

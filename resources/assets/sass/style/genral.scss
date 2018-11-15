@@ -4,16 +4,45 @@
 }
 
 @font-face {
-  font-family : "JJO";
-  src         : url('/fonts/Java Jive Outline Condensed.ttf');
-  font-style  : normal;
-  font-weight : normal;
+  font-family : "Bismillah";
+  src         : url("../../fonts/X BiSmeLLaH.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family : "Babylon";
+  src         : url("../../fonts/Babylon5-Hollow-Regular.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family : "BacaRaton";
+  src         : url("../../fonts/Boca-Raton-Regular.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+
+.ff-BR {
+  font-family : "BacaRaton", sans-serif;
+}
+
+html {
+  background : url("../../images/dark-grey-terrazzo.png");
 }
 
 body {
   cursor     : default;
   font-size  : 1.1rem;
   min-height : 100vh;
+  background : transparent;
+}
+
+header {
+  font-family : "Bismillah",sans-serif;
+  font-size   : 7rem;
+  color: gold;
 }
 
 main {
@@ -22,6 +51,11 @@ main {
 
 .wrapper {
   min-height : 88vh;
+  background : rgba($body-bg, .95);
+}
+
+hr {
+  border-color : $dark;
 }
 
 .table-active {
@@ -40,18 +74,30 @@ footer {
   }
 }
 
-toTop {
+#toTop:hover {
+  color : $white;
+}
+
+#toTop:before {
+  content : '\f139';
+}
+
+#toTop {
   font-family : Font Awesome\ 5 Free;
   position    : fixed;
   font-size   : 2rem;
   bottom      : 1rem;
   right       : 1rem;
   display     : none;
-  color       : rgba($secondary, .4);
+  color       : rgba($secondary, .7);
 }
 
 .brand {
-  color : rgba(255, 255, 255, .8);
+  color : rgba(195, 195, 195, .8);
+}
+
+.brand:hover {
+  background : #fff;
 }
 
 .facebook:hover {
@@ -74,14 +120,6 @@ toTop {
   color : rgb(221, 75, 57);
 }
 
-toTop:hover {
-  color : $white;
-}
-
-toTop:before {
-  content : '\f139';
-}
-
 ::-webkit-scrollbar {
   width              : 3px;
   height             : 2px;
@@ -96,4 +134,9 @@ toTop:before {
 
 ::-webkit-scrollbar-thumb:hover {
   background : $white;
+}
+
+::selection {
+  background : $secondary;
+  color      : $warning;
 }

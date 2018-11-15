@@ -121,6 +121,10 @@ $("#toTop").click(function () {
     $("html, body").animate({ scrollTop: 0 }, 500);
 });
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {

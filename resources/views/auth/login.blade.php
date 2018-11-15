@@ -9,10 +9,8 @@
 
     <title>Admin</title>
 
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/theme.css" rel="stylesheet">
-    <link href="/css/signin.css" rel="stylesheet">
-
+    <link href="{{asset("css/app.css")}}" rel="stylesheet">
+    <link href="{{asset("css/signin.css")}}" rel="stylesheet">
 
 </head>
 

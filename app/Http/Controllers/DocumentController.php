@@ -12,7 +12,7 @@ class DocumentController extends Controller {
     
     public function __construct()
     {
-        parent::__construct();
+        $this->middleware('after')->except(['open','download']);
         $this->middleware('auth')->only(['create', 'store']);
     }
     

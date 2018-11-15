@@ -2,6 +2,10 @@
   background : $bg-navbar;
 }
 
+.navbar-brand {
+  border: none;
+}
+
 .sidebar, .sideBar {
   background : $bg-sidebar;
 }
@@ -15,6 +19,6 @@ footer {
     color : $link-color;
   }
   a:hover {
-    color : darken($link-color, 12%);
+    color : darken($link-color, 15%);
   }
 }
