@@ -12,7 +12,7 @@ class DocumentController extends Controller {
     
     public function __construct()
     {
-        $this->middleware('after')->except(['open','download']);
+        $this->middleware('after')->except(['open', 'download']);
         $this->middleware('auth')->only(['create', 'store']);
     }
     
@@ -95,9 +95,19 @@ class DocumentController extends Controller {
             $find->orderBy('subject');
         
         
+        $total = count($find->get());
         $results = $find->paginate(10);
         
-        return view('browse', compact('results', 'search', 'sort', 'dept', 'type', 'year', 'month'));
+        $results->appends([
+            'type'   => $request->type,
+            "search" => $request->search,
+            "sort"   => $request->sort,
+            "dept"   => $request->dept,
+            "year"   => $request->year,
+            "month"  => $request->month,
+        ]);
+        
+        return view('browse', compact('results', 'search', 'sort', 'dept', 'type', 'year', 'month', 'total'));
         
     }
     

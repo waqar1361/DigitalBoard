@@ -13867,7 +13867,8 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(38);
+__webpack_require__(38);
+module.exports = __webpack_require__(39);
 
 
 /***/ }),
@@ -13896,6 +13897,7 @@ window.Popper = __webpack_require__(9).default;
 try {
     window.$ = window.jQuery = __webpack_require__(10);
     __webpack_require__(36);
+    // require('bootstrap/js/src/util')
 } catch (e) {}
 
 window.Vue = __WEBPACK_IMPORTED_MODULE_0_vue___default.a;
@@ -30008,8 +30010,28 @@ $("#toTop").click(function () {
     $("html, body").animate({ scrollTop: 0 }, 500);
 });
 
+$('#light').click(function () {
+    document.cookie = "theme=light";
+    $('#light').attr('id', 'dark');
+});
+
+$('#dark').click(function () {
+    document.cookie = "theme=dark";
+    $('#dark').attr('id', 'light');
+});
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 /***/ }),
 /* 38 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 39 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

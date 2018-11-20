@@ -1,6 +1,6 @@
 <div class="text-capitalize pb-0">
 
-    <strong>{{$item->name}}</strong>
+    <strong data-toggle="tooltip" title="{{ strtoupper($item->full_name) }}" >{{$item->name}}</strong>
 
     <ul class="list-unstyled ml-3">
         @if(count($item->notices))

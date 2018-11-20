@@ -6,30 +6,30 @@
 @font-face {
   font-family : "Bismillah";
   src         : url("../../fonts/X BiSmeLLaH.ttf");
-  font-style: normal;
-  font-weight: normal;
+  font-style  : normal;
+  font-weight : normal;
 }
+
 @font-face {
   font-family : "Babylon";
   src         : url("../../fonts/Babylon5-Hollow-Regular.ttf");
-  font-style: normal;
-  font-weight: normal;
+  font-style  : normal;
+  font-weight : normal;
 }
+
 @font-face {
-  font-family : "BacaRaton";
+  font-family : "BocaRaton";
   src         : url("../../fonts/Boca-Raton-Regular.ttf");
-  font-style: normal;
-  font-weight: normal;
+  font-style  : normal;
+  font-weight : normal;
 }
-
-
 
 .ff-BR {
-  font-family : "BacaRaton", sans-serif;
+  font-family : "BocaRaton", 'Boca Raton',  sans-serif;
 }
 
 html {
-  background : url("../../images/dark-grey-terrazzo.png");
+  background : url($background-image);
 }
 
 body {
@@ -40,9 +40,9 @@ body {
 }
 
 header {
-  font-family : "Bismillah",sans-serif;
+  font-family : "Bismillah", sans-serif;
   font-size   : 7rem;
-  color: gold;
+  //color       : gold;
 }
 
 main {
@@ -128,15 +128,15 @@ footer {
 }
 
 ::-webkit-scrollbar-thumb {
-  background         : $secondary;
+  background         : $dark;
   -webkit-box-shadow : inset 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background : $white;
+  background : darken($dark, 12%);
 }
 
 ::selection {
   background : $secondary;
-  color      : $warning;
+  color      : $light;
 }

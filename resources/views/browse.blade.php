@@ -109,15 +109,15 @@
     </div>
     
     {{-- Show results  --}}
-    <section>
+    <section class="col-10 m-auto">
         @if(!count($results))
             No result found, Try Again
         @endif
-        <h2 class="text-center mb-4">{{ count($results) }} Result(s) Found</h2>
+        <h2 class="text-center mb-4">{{ $total }} Result(s) Found</h2>
         @foreach($results as $row)
-            <div class="card p-2 mb-2">
+            <div class="card p-2 mb-3">
                 <a href="browse/{{ $row->file }}">
-                    <h5 title="subject">{{$row->subject}}</h5>
+                    <h5 data-toggle="tooltip" data-placement="left" title="subject">{{$row->subject}}</h5>
                 </a>
                 <section class="text-muted" title="Information">
                     <strong>Department : </strong> {{ $row->department->name }} ,

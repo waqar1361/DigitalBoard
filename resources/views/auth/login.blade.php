@@ -10,17 +10,23 @@
     <title>Admin</title>
 
     <link href="{{asset("css/app.css")}}" rel="stylesheet">
+    @if($_COOKIE['theme'] == "light")
+        <link rel="stylesheet" href="{{asset('css/theme_light.css')}}" id="theme">
+    @endif
+    @if($_COOKIE['theme'] == 'dark')
+        <link rel="stylesheet" href="{{asset('css/theme_dark.css')}}" id="theme">
+    @endif
     <link href="{{asset("css/signin.css")}}" rel="stylesheet">
 
 </head>
 
 <body>
-<form class="form-signin text-white" action="{{ route('login') }}" method="post">
+<form class="form-signin" action="{{ route('login') }}" method="post">
 
     {{ csrf_field() }}
 
     <div class="text-center mb-2">
-        <img class="mb-4 rounded outset-shadow" src="/logo.jpg" alt="Logo" width="120" height="120">
+        <img class="mb-4 rounded outset-shadow" src="{{asset('logo.jpg')}}" alt="Logo" width="120" height="120">
     </div>
 
     <h4 class="mb-4">Sign in as Admin to continue</h4>

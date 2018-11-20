@@ -1,7 +1,7 @@
 @php($link_limit = 9)
 
 @if ($paginator->lastPage() > 1)
-    <ul class="pagination justify-content-start">
+    <ul class="pagination justify-content-center">
         @if( $paginator->currentPage() != 1 )
             @if( $paginator->currentPage() > 2 )
                 <li class="page-item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}" title="First">

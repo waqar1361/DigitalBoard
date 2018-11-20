@@ -10,6 +10,8 @@
     <link rel="icon" href="{{asset('favicon.jpg')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     
+    <link rel="stylesheet" href="{{asset('css/theme_dark.css')}}" id="theme">
+
 </head>
 <body>
 <div class="wrapper">
@@ -25,7 +27,7 @@
                 @include('layouts.adminMenu')
             </div>
             
-            <div class="col dashboard-content">
+            <div class="col dashboard-content" style="min-height: 88vh">
                 @yield('content')
             </div>
         

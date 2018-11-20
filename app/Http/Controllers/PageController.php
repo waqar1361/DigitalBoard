@@ -10,7 +10,7 @@ class PageController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'light', 'dark']);
     }
     
     public function index()
@@ -32,6 +32,20 @@ class PageController extends Controller {
         $faqs = faq::latest()->questions()->get();
         
         return view('admin.faqs', compact("faqs"));
+    }
+    
+    public function light()
+    {
+        setcookie('theme', 'light', time() + (86400 * 30), "/");
+        
+        return;
+    }
+    
+    public function dark()
+    {
+        setcookie('theme', 'dark', time() + (86400 * 30), "/");
+        
+        return;
     }
     
 }

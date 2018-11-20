@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="col-8">
-        <div class="bg-primary p-4">
-            <h2>{{ $faq->question }}</h2>
+        <div class="p-4">
+            <h2>Q. {{ $faq->question }}</h2>
             <hr>
             <section>
-                <p>{{$faq->answer}}</p>
+                <p><b>Answer : </b>{{$faq->answer}}</p>
             </section>
         </div>
     </div>

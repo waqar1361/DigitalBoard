@@ -48,6 +48,7 @@ class DocumentFormRequest extends FormRequest {
         $this->data = [
             'subject'       => $this->subject,
             'tags'          => $tags,
+            'type'          => $this->type,
             'department_id' => $this->department,
             'issued_at'     => $this->issued_at,
             'file'          => $fileName,
