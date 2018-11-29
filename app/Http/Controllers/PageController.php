@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\faq;
+use Illuminate\Http\Request;
 
 class PageController extends Controller {
     
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth')->except(['index', 'light', 'dark']);
+        $this->middleware('auth')->except(['index', 'cookies', 'layout']);
     }
     
     public function index()
@@ -34,18 +35,10 @@ class PageController extends Controller {
         return view('admin.faqs', compact("faqs"));
     }
     
-    public function light()
+    public function cookies(Request $request)
     {
-        setcookie('theme', 'light', time() + (86400 * 30), "/");
-        
-        return;
-    }
-    
-    public function dark()
-    {
-        setcookie('theme', 'dark', time() + (86400 * 30), "/");
-        
-        return;
+        setcookie($request->name, $request->value, time() + (86400 * 30), "/");
+        return "Successful";
     }
     
 }

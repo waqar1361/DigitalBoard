@@ -7,6 +7,7 @@ let app = new Vue({
         typeError: false,
         url: '',
         fileLabel: "Choose Your File",
+        layout : 'list',
     },
     methods: {
         saveDept() {
@@ -25,6 +26,63 @@ let app = new Vue({
                 this.typeError = true;
             if (error())
                 this.nameError = true;
+        },
+        light(){
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data : {
+                    name : 'theme',
+                    value : 'light'
+                },
+            });
+            $('#theme').attr('href', 'http://nnb.test/css/theme_light.css');
+            $('#light').addClass('disabled');
+            $('#dark').removeClass('disabled');
+        },
+        dark() {
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data : {
+                    name : 'theme',
+                    value : 'dark'
+                },
+            });
+            $('#theme').attr('href', 'http://nnb.test/css/theme_dark.css');
+            $('#dark').addClass('disabled');
+            $('#light').removeClass('disabled');
+        },
+        
+        grid () {
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data : {
+                    name : 'layout',
+                    value : 'grid'
+                }
+            });
+            $('#list-btn').hide();
+            $('#grid-btn').show();
+            $('#list').hide();
+            $('#grid').show();
+            
+        },
+        list () {
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data : {
+                    name : 'layout',
+                    value : 'list'
+                }
+            });
+            $('#grid-btn').hide();
+            $('#list-btn').show();
+            $('#grid').hide();
+            $('#list').show();
+            
         }
     },//End of methods
     
@@ -37,6 +95,23 @@ $(window).scroll(function () {
         $('#toTop').fadeOut();
     }
 });
+
+// let app2 = new Vue({
+//     el: "#test",
+//     methods: {
+//         testit() {
+//             console.log('testing')
+//         },
+//         light() {
+//         },
+//         dark() {
+//
+//         },
+//     },
+//
+//
+// });
+
 
 $("#toTop").click(function () {
     $("html, body").animate({scrollTop: 0}, 500);

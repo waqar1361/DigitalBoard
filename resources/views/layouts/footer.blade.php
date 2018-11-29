@@ -1,4 +1,4 @@
-<footer class="card">
+<footer class="card" id="test">
     
     <div class="row">
         
@@ -27,10 +27,11 @@
             <hr>
             
             <b>Theme : </b>
-            <div class="btn-group" role="group" aria-label="">
-                <button id="light" type="button" onclick="light()" class="btn btn-light {{ $_COOKIE['theme'] == 'light' ?
+            
+            <div class="btn-group" role="group" aria-label="themes">
+                <button id="light" type="button" @click="light" class="btn btn-light {{ $_COOKIE['theme'] == 'light' ?
                 "disabled" : "" }}" >Light</button>
-                <button id="dark" type="button" onclick="dark()" class="btn btn-dark {{ $_COOKIE['theme'] == 'dark' ?
+                <button id="dark" type="button" @click="dark" class="btn btn-dark {{ $_COOKIE['theme'] == 'dark' ?
                 "disabled" : "" }}">Dark</button>
             </div>
         </div>

@@ -84,7 +84,8 @@ var app = new Vue({
         nameError: false,
         typeError: false,
         url: '',
-        fileLabel: "Choose Your File"
+        fileLabel: "Choose Your File",
+        layout: 'list'
     },
     methods: {
         saveDept: function saveDept() {
@@ -105,6 +106,60 @@ var app = new Vue({
             $.toaster("Invalid Input", '', 'danger');
             if (error()) this.typeError = true;
             if (error()) this.nameError = true;
+        },
+        light: function light() {
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data: {
+                    name: 'theme',
+                    value: 'light'
+                }
+            });
+            $('#theme').attr('href', 'http://nnb.test/css/theme_light.css');
+            $('#light').addClass('disabled');
+            $('#dark').removeClass('disabled');
+        },
+        dark: function dark() {
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data: {
+                    name: 'theme',
+                    value: 'dark'
+                }
+            });
+            $('#theme').attr('href', 'http://nnb.test/css/theme_dark.css');
+            $('#dark').addClass('disabled');
+            $('#light').removeClass('disabled');
+        },
+        grid: function grid() {
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data: {
+                    name: 'layout',
+                    value: 'grid'
+                }
+            });
+            $('#list-btn').hide();
+            $('#grid-btn').show();
+            $('#list').hide();
+            $('#grid').show();
+        },
+        list: function list() {
+            $.ajax({
+                url: "set/cookies",
+                type: "get",
+                data: {
+                    name: 'layout',
+                    value: 'list'
+                }
+            });
+            $('#grid-btn').hide();
+            $('#list-btn').show();
+            $('#grid').hide();
+            $('#list').show();
         }
     } //End of methods
 
@@ -117,6 +172,23 @@ $(window).scroll(function () {
         $('#toTop').fadeOut();
     }
 });
+
+// let app2 = new Vue({
+//     el: "#test",
+//     methods: {
+//         testit() {
+//             console.log('testing')
+//         },
+//         light() {
+//         },
+//         dark() {
+//
+//         },
+//     },
+//
+//
+// });
+
 
 $("#toTop").click(function () {
     $("html, body").animate({ scrollTop: 0 }, 500);

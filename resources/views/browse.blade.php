@@ -10,12 +10,12 @@
                     <div class="col">
                         <div class="form-group">
                             <input type="text"
-                                    id="search"
-                                    class="form-control-lg form-control"
-                                    name="search"
-                                    value="{{ $search or '' }}"
-                                    placeholder="Search"
-                                    autocomplete="off">
+                                   id="search"
+                                   class="form-control-lg form-control"
+                                   name="search"
+                                   value="{{ $search or '' }}"
+                                   placeholder="Search"
+                                   autocomplete="off">
                         </div>
                     </div>
                     <div class="col-2">
@@ -109,24 +109,41 @@
     </div>
     
     {{-- Show results  --}}
-    <section class="col-10 m-auto">
-        @if(!count($results))
-            No result found, Try Again
-        @endif
-        <h2 class="text-center mb-4">{{ $total }} Result(s) Found</h2>
-        @foreach($results as $row)
-            <div class="card p-2 mb-3">
-                <a href="browse/{{ $row->file }}">
-                    <h5 data-toggle="tooltip" data-placement="left" title="subject">{{$row->subject}}</h5>
-                </a>
-                <section class="text-muted" title="Information">
-                    <strong>Department : </strong> {{ $row->department->name }} ,
-                    <strong>Date issued : </strong> {{  $row->issued_at->format("dS M, Y") }}
-                </section>
+    
+    <section id="search-results">
+        <section class="container-fluid">
+            @if(!count($results))
+                No result found, Try Again
+            @endif
+            
+            <div class="row">
+                <div class="col-10">
+                    <h2 class="text-center mb-4">{{ $total }} Result(s) Found</h2>
+                </div>
+                <div class="col-2">
+                    <button id="list-btn" class="btn btn-secondary"
+                            data-toggle="tooltip" data-placement="bottom" title="list view"
+                            @click="grid"
+                            style="{{ $_COOKIE['layout'] != 'list' ? "display: none" : "" }}">
+                        <i class="fa fa-list"></i>
+                    </button>
+                    <button id="grid-btn" class="btn btn-secondary"
+                            data-toggle="tooltip" data-placement="bottom" title="grid view"
+                            @click="list"
+                            style="{{ $_COOKIE['layout'] != 'grid' ? "display: none" : "" }}">
+                        <i class="fa fa-th"></i>
+                    </button>
+                </div>
             </div>
-        @endforeach
+            
+            @include('document.list')
+            @include('document.grid')
+            
+        </section>
     </section>
+    
     <section class="mt-4">
         @include('layouts.paginate',['paginator' => $results])
     </section>
+
 @endsection

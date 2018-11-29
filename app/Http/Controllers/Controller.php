@@ -19,7 +19,13 @@ class Controller extends BaseController {
             $_COOKIE['theme'] = 'light';
         }
         
-        $this->middleware('after');
+        if (empty($_COOKIE['layout']))
+        {
+            setcookie('layout', 'list', time() + (86400 * 30), "/");
+            $_COOKIE['layout'] = 'list';
+        }
+        
+        $this->middleware('after')->except(['open', 'download']);
     }
     
 }
