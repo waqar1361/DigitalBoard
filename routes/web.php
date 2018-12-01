@@ -1,8 +1,8 @@
 <?php
 
 Auth::routes();
-Route::get('theme/light', 'pageController@light');
-Route::get('theme/dark', 'pageController@dark');
+Route::get('set/cookies', 'pageController@cookies');
+
 
 /*
  *      BASIC ROUTES

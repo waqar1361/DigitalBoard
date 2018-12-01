@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\Http\Requests\DocumentFormRequest;
-use App\Repositories\Documents;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -12,7 +11,7 @@ class DocumentController extends Controller {
     
     public function __construct()
     {
-        $this->middleware('after')->except(['open', 'download']);
+        parent::__construct();
         $this->middleware('auth')->only(['create', 'store']);
     }
     
@@ -94,9 +93,9 @@ class DocumentController extends Controller {
         if ($sort == 'alph')
             $find->orderBy('subject');
         
-        
         $total = count($find->get());
-        $results = $find->paginate(10);
+        
+        $results = $find->paginate(15);
         
         $results->appends([
             'type'   => $request->type,

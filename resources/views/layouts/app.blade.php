@@ -26,35 +26,17 @@
         @yield('content')
     </main>
     
+{{--</div>--}}
+{{--<div class="container">--}}
     @include('layouts.footer')
-
 </div>
 
 <script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('js/script.js')}}"></script>
-<script>
-    
-    let light = function () {
-        $.ajax({
-            url: "/theme/light",
-            type: "get",
-        });
-        $('#theme').attr('href', 'http://nnb.test/css/theme_light.css');
-        $('#light').addClass('disabled');
-        $('#dark').removeClass('disabled');
-    };
-    
-    let dark = function () {
-        $.ajax({
-            url: "/theme/dark",
-            type: "get",
-        });
-        $('#theme').attr('href', 'http://nnb.test/css/theme_dark.css');
-        $('#dark').addClass('disabled');
-        $('#light').removeClass('disabled');
-    };
-</script>
 
+{{--<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>--}}
+{{--<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>--}}
+{{--<script src="{{asset('js/vue.js')}}"></script>--}}
+{{--<script src="{{asset('js/script.js')}}"></script>--}}
 
 </body>
 </html>
