@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class DocumentFormRequest extends FormRequest {
     
     public $data;
-    protected $fileExtention;
+    protected $fileExtension;
     
     public function authorize()
     {
@@ -42,8 +42,8 @@ class DocumentFormRequest extends FormRequest {
         $tags .= ", " . $this->issued_at;
         $tags .= ", " . Carbon::parse($this->issued_at)->format('j F Y');
         
-        $fileName = preg_replace(['/\s+/', '/\./'], '', microtime());;
-        $this->fileExtention = $this->upload_file->getClientOriginalExtension();
+        $fileName = preg_replace(['/\s+/', '/\./'], '', microtime());
+        $this->fileExtension = $this->upload_file->getClientOriginalExtension();
         
         $this->data = [
             'subject'       => $this->subject,
@@ -52,7 +52,7 @@ class DocumentFormRequest extends FormRequest {
             'department_id' => $this->department,
             'issued_at'     => $this->issued_at,
             'file'          => $fileName,
-            'extension'     => $this->fileExtention,
+            'extension'     => $this->fileExtension,
         ];
         
         
@@ -66,6 +66,6 @@ class DocumentFormRequest extends FormRequest {
     public function storeFile()
     {
         $this->upload_file->
-        storeAs('public', $this->data['file'] . "." . $this->fileExtention);
+        storeAs('public', $this->data['file'] . "." . $this->fileExtension);
     }
 }
