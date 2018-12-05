@@ -2,7 +2,7 @@
 @section('content')
     
     <div class="row">
-        <div class="offset-1 col-7">
+        <div class="offset-md-1 col-md-7">
             <h3 class="text-justify mb-4">{{ $document->subject }}</h3>
             <table class="table table-bordered table-striped text-capitalize">
                 <tr>
@@ -35,7 +35,7 @@
             </table>
             
             
-            <section class="card col-6 py-2">
+            <section class="card col-md-6 p-2">
                 <h4>Share on</h4>
                 <div class="container-fluid">
                     <nav class="d-flex text-justify">

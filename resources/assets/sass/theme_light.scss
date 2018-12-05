@@ -1,16 +1,13 @@
 @import "theme/flatly/variables";
-@import "bs/bootstrap";
-@import "theme/flatly/bootswatch";
 
 $bg-navbar : $primary;
 $bg-sidebar : $light;
 $bg-share : $primary;
 $border-color-sidebar : $dark;
 $bg-link-sidebar : $dark;
-$background-image : "../../images/light-grey-terrazzo.png";
-
 $toTop-hover: #000;
-
+@import "bs/bootstrap";
+@import "theme/flatly/bootswatch";
 @import 'style';
 
 footer {

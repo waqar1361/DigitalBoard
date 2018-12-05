@@ -1,16 +1,12 @@
 @import "theme/slate/variables";
-@import "bs/bootstrap";
-@import "theme/slate/bootswatch";
-
-$body-bg : #272b30;
+//$body-bg : #272b30;
 $bg-navbar : $primary;
 $bg-sidebar : $primary;
 $bg-share : $primary;
 $border-color-sidebar : $dark;
 $bg-link-sidebar : $dark;
-$background-image : "../../images/dark-grey-terrazzo.png";
-
+$background-image : "../../images/dark-triangles.png";
 $toTop-hover: #fff;
-
-
+@import "bs/bootstrap";
+@import "theme/slate/bootswatch";
 @import "style";

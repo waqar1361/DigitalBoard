@@ -67,6 +67,7 @@
             @endif
             </div>
         </div>
+        
         <div class="form-group">
             <button type="submit" class="btn btn-success">Publish</button>
         </div>
