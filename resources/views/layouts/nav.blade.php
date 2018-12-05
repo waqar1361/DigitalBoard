@@ -1,5 +1,4 @@
-@yield('header')
-<nav class="navbar navbar-expand-md shadow navbar-dark rounded mb-3">
+<nav class="navbar navbar-expand-md shadow navbar-dark rounded my-3">
     
     <a class="navbar-brand" data-toggle="tooltip" data-placement="bottom" href="/"
        title="National Notices Board">NNB</a>

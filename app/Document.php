@@ -50,9 +50,19 @@ class Document extends Model {
             ->get();
     }
     
+    public function limited($limit) {
+        $text = $this->subject;
+        if (str_word_count($this->subject, 0) > $limit) {
+            $words = str_word_count($text, 2);
+            $pos = array_keys($words);
+            $text = substr($text, 0, $pos[$limit]) . '...';
+        }
+        return $text;
+    }
+    
     public function fileSize()
     {
-        return round(filesize("storage/" . $this->file . ".pdf") / 1024 ** 2, 2);
+        return round(filesize("storage/" . $this->file . "." . $this->extension) / 1024 ** 2, 2);
     }
     
 }

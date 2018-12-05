@@ -19,24 +19,21 @@
 
 </head>
 <body>
-<div class="wrapper container">
+<div class="wrapper container-fluid">
+    @yield('header')
     
     @include('layouts.nav')
     <main>
         @yield('content')
     </main>
     
-{{--</div>--}}
-{{--<div class="container">--}}
     @include('layouts.footer')
 </div>
 
 <script src="{{asset('js/app.js')}}"></script>
-
 {{--<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>--}}
 {{--<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>--}}
 {{--<script src="{{asset('js/vue.js')}}"></script>--}}
 {{--<script src="{{asset('js/script.js')}}"></script>--}}
-
 </body>
 </html>

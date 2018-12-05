@@ -2,14 +2,17 @@
 <section id="grid" style="{{ $_COOKIE['layout'] != 'grid' ? "display: none" : "" }}" >
 @foreach($results as $document)
     @if ($loop->iteration % $size == 1)
-        <div class="row mb-3">
+        <div class="row mb-md-3">
             @endif
             
-            <div class="col-{{ 12/$size }}">
-                <article class="card">
+            <div class="col-md-{{ 12/$size }}">
+                <article class="card mb-3 mb-md-0">
                     <a href="browse/{{ $document->file }}" class="card-header">
                         <h5 data-toggle="tooltip" data-placement="bottom"
-                            title="{{$document->subject}}">{{ str_limit($document->subject, 21)}}</h5>
+                            title="{{$document->subject}}">
+                            {{--{{ str_limit($document->subject, 21)}}--}}
+                            {{ $document->limited(3) }}
+                        </h5>
                     </a>
                     
                     <section class="card-body px-2 text-justify">
