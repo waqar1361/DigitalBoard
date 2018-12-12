@@ -15,9 +15,19 @@
             <li class="nav-item {{ Nav::hasSegment('browse') }} ">
                 <a class="nav-link" href="/browse">Browse</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Admin</a>
-            </li>
+            
+            @auth('admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                </li>
+            @endauth
+            
+            @guest('admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/login">Admin</a>
+                </li>
+            @endguest
+        
         </ul>
     </div>
 

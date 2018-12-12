@@ -10,7 +10,7 @@ class DepartmentController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
     
     public function index()
@@ -18,25 +18,17 @@ class DepartmentController extends Controller {
         return view('department.index');
     }
     
-    public function create()
+    public function store(Request $request)
     {
-        return view('department.create');
-    }
-    
-    public function store()
-    {
-        $this->validate(request(), [
+        $data = $request->validate([
             'name' => 'required|min:3',
+            'full_name' => 'nullable',
             'type' => 'required'
         ]);
         
-        Department::create([
-            'name' => request()->name,
-            'type' => request()->type
-        ]);
+        Department::create($data);
         
         return ["added successfully"];
     }
-    
     
 }

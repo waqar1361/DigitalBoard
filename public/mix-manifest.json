@@ -2,5 +2,8 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/theme_dark.css": "/css/theme_dark.css",
-    "/css/theme_light.css": "/css/theme_light.css"
+    "/css/theme_light.css": "/css/theme_light.css",
+    "/js/axios-vue.js": "/js/axios-vue.js",
+    "/js/script.js": "/js/script.js",
+    "/js/admin.js": "/js/admin.js"
 }

@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<form class="form-signin" action="{{ route('login') }}" method="post">
+<form class="form-signin" action="{{ route('admin.login.submit') }}" method="post">
 
     {{ csrf_field() }}
 
@@ -31,18 +31,13 @@
 
     <h4 class="mb-4">Sign in as Admin to continue</h4>
 
-    <div class="form-label-group">
-        <input type="email" id="Email" class="form-control-lg form-control" name="email" value="{{ old('email') }}" placeholder="Email address" required autofocus>
-        <label for="Email">Email address</label>
-        @if ($errors->has('email'))
-            <span class="help-block">
-        <strong>{{ $errors->first('email') }}</strong>
-        </span>
-        @endif
+    <div class="form-group">
+        <input type="email" id="Email" class="form-control-lg form-control" name="email" value="admin@nnb.pk" readonly>
+        {{--<label for="Email">Email address</label>--}}
     </div>
 
     <div class="form-label-group">
-        <input type="password" id="Password" name="password" class="form-control-lg form-control" placeholder="Password" required>
+        <input type="password" id="Password" name="password" class="form-control-lg form-control" placeholder="Password" autofocus required>
         <label for="Password">Password</label>
         @if ($errors->has('password'))
             <span class="help-block">
@@ -64,5 +59,10 @@
     </div>
     <p class="mt-5 mb-3 text-muted text-center">&copy; {{date('Y')}}</p>
 </form>
+
+    @foreach($errors as $error)
+        {{ $error }}
+    @endforeach
+
 </body>
 </html>

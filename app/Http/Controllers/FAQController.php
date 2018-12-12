@@ -11,17 +11,30 @@ class FAQController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth')->only([
-            "createAnswer",
-            'storeAnswer',
+        $this->middleware('auth:admin')->except([
+            "index",
+            'createQuestion',
+            'storeQuestion',
         ]);
     }
     
     public function index()
     {
-        $faqs = faq::latest()->get();
+        $faqs = faq::latest()->answered()->get();
         
         return view('faqs.index', compact("faqs"));
+    }
+    
+    public function show(faq $faq)
+    {
+        return view('faqs.show', compact("faq"));
+    }
+    
+    public function faqs()
+    {
+        $faqs = faq::latest()->questions()->get();
+        
+        return view('admin.faqs', compact("faqs"));
     }
     
     public function createQuestion()
@@ -53,6 +66,7 @@ class FAQController extends Controller {
     
     public function storeAnswer(Request $request, faq $faq)
     {
+//        return $faq;
         $request->validate([
             'answer' => "required|string|min:5",
         ]);
@@ -61,14 +75,10 @@ class FAQController extends Controller {
             'answer' => $request->answer
         ]);
         
-        Mail::to($faq->email)->send(new answer($faq));
         
-        return redirect('admin');
-    }
-    
-    public function show(faq $faq)
-    {
-        return view('faqs.show', compact("faq"));
+        \Mail::to($faq->email)->send(new answer($faq));
+        
+        return redirect()->back();
     }
     
 }

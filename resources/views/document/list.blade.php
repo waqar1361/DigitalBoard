@@ -4,9 +4,10 @@
         <a href="browse/{{ $document->file }}">
             <h5 data-toggle="tooltip" data-placement="left" title="subject">{{$document->subject}}</h5>
         </a>
-        <section class="text-muted d-none d-sm-flex" title="Information">
-            <strong>Department : </strong> {{ $document->department->name }} ,
-            <strong>Date issued : </strong> {{  $document->issued_at->format("dS M, Y") }}
+        <section class="text-capitalize d-none d-sm-flex" title="Information">
+            <div><strong>Category : </strong> {{ $document->type }},</div>
+            <div><strong>Department : </strong> {{ $document->department->name }},</div>
+            <div><strong>Date issued : </strong> {{  $document->issued_at->format("dS M, Y") }}</div>
         </section>
     </div>
 @endforeach
