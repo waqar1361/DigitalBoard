@@ -10,13 +10,12 @@
                     <a href="browse/{{ $document->file }}" class="card-header">
                         <h5 data-toggle="tooltip" data-placement="bottom"
                             title="{{$document->subject}}">
-                            {{--{{ str_limit($document->subject, 21)}}--}}
                             {{ $document->limited(3) }}
                         </h5>
                     </a>
                     
                     <section class="card-body px-2 text-justify">
-                        <strong>Type : </strong> <span class="text-capitalize">{{ $document->type }}</span> <br>
+                        <strong>Category : </strong> <span class="text-capitalize">{{ $document->type }}</span> <br>
                         <strong>Department : </strong> {{ $document->department->name }} <br>
                         <strong>Date issued : </strong> {{  $document->issued_at->format("dS M, Y") }}
                     </section>

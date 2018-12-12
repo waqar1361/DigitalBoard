@@ -60,26 +60,19 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 42);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/******/ ({
 
-__webpack_require__(1);
-__webpack_require__(2);
-module.exports = __webpack_require__(3);
-
-
-/***/ }),
-/* 1 */
+/***/ 32:
 /***/ (function(module, exports) {
 
 var app = new Vue({
     el: '.wrapper',
     data: {
         name: '',
+        full_name: '',
         type: 'Government',
         nameError: false,
         typeError: false,
@@ -87,7 +80,50 @@ var app = new Vue({
         fileLabel: "Choose Your File",
         layout: 'list'
     },
+
     methods: {
+        notify: function notify(message) {
+            var Color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'primary';
+
+            color = Color;
+            $.notify({
+                icon: "now-ui-icons ui-1_bell-53",
+                message: message
+            }, {
+                type: color,
+                timer: 5000,
+                placement: {
+                    from: 'bottom',
+                    align: 'right'
+                }
+            });
+        },
+        notifySuccess: function notifySuccess(message) {
+            $.notify({
+                icon: "now-ui-icons ui-1_check",
+                message: message
+            }, {
+                type: 'success',
+                timer: 2000,
+                placement: {
+                    from: 'bottom',
+                    align: 'right'
+                }
+            });
+        },
+        notifyFailure: function notifyFailure(message) {
+            $.notify({
+                icon: "now-ui-icons ui-1_simple-remove",
+                message: message
+            }, {
+                type: 'danger',
+                timer: 2000,
+                placement: {
+                    from: 'bottom',
+                    align: 'right'
+                }
+            });
+        },
         saveDept: function saveDept() {
             var _this = this;
 
@@ -99,12 +135,11 @@ var app = new Vue({
             });
         },
         successful: function successful() {
-            $.toaster("Successfully Added");
+            this.notifySuccess('Successfully Added');
             this.name = '';
         },
         failed: function failed() {
-            $.toaster("Invalid Input", '', 'danger');
-            if (error()) this.typeError = true;
+            this.notifyFailure('Check for input(s)');
             if (error()) this.nameError = true;
         },
         light: function light() {
@@ -165,50 +200,37 @@ var app = new Vue({
 
 }); //End of app(Vue)
 
-$(window).scroll(function () {
-    if ($(this).scrollTop()) {
-        $('#toTop').fadeIn();
-    } else {
-        $('#toTop').fadeOut();
-    }
-});
+$(document).ready(function () {
 
-// let app2 = new Vue({
-//     el: "#test",
-//     methods: {
-//         testit() {
-//             console.log('testing')
-//         },
-//         light() {
-//         },
-//         dark() {
-//
-//         },
-//     },
-//
-//
-// });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 
+    $(window).scroll(function () {
+        if ($(this).scrollTop()) {
+            $('#toTop').fadeIn();
+        } else {
+            $('#toTop').fadeOut();
+        }
+    });
 
-$("#toTop").click(function () {
-    $("html, body").animate({ scrollTop: 0 }, 500);
-});
+    $("#toTop").click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 500);
+    });
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip();
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    });
 });
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+/***/ 42:
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
+module.exports = __webpack_require__(32);
 
-// removed by extract-text-webpack-plugin
 
 /***/ })
-/******/ ]);
+
+/******/ });

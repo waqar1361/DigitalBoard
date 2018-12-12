@@ -12,17 +12,12 @@ class DocumentController extends Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth:admin')->only(['create', 'store']);
     }
     
     public function show(Document $document)
     {
         return view('document.index', compact('document'));
-    }
-    
-    public function create()
-    {
-        return view('document.create');
     }
     
     public function store(DocumentFormRequest $request)

@@ -72,8 +72,8 @@
                         <div class="col">
                             <select name="dept" id="dept" class="custom-select custom-select-sm">
                                 <option value="all" {{ $dept == "all" ? "selected" : "" }}>All</option>
-                                @foreach( Dept::all() as $item )
-                                    <option value="{{$item->name}}" {{ $dept == $item->name ? "selected" : "" }}>
+                                @foreach( Dept::orderBy('name')->get() as $item )
+                                    <option class="text-capitalize" value="{{$item->name}}" {{ $dept == $item->name ? "selected" : "" }}>
                                         {{ $item->name }}
                                     </option>
                                 @endforeach
