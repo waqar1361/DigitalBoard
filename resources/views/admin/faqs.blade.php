@@ -8,16 +8,16 @@
     
     <div class="content">
         <div class="row">
-            <div class="col-8-md">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Frequently Asked Questions</h3>
                     </div>
                     <div class="card-body">
-                        @if(! count($faqs))
+                        @if(! $faqs->count())
                             <h3>There's nothing to be answer yet</h3>
                         @endif
-                        @if(count($faqs))
+                        @if($faqs->count())
                             <h4 class="mb-3">Questions to be answered</h4>
                             <ol class="col-8">
                                 @foreach($faqs as $faq)
@@ -35,8 +35,9 @@
                 <div class="card">
                     <div class="card-header"> <h4 class="card-title">Archives</h4></div>
                     <div class="card-body">
-                        @forelse($faqs = \App\faq::latest()->answered()->take(10)->get() as $faq)
-                            <p>{{ $faq->id }}- <a href="{{ route('admin.show.faqs',$faq->id) }}">{{ $faq->question }}</a></p>
+                        @forelse($archives as $stat)
+                            <p>{{ $loop->iteration }}- <a href="{{ route('admin.show.faqs',$stat->id) }}">{{ $stat->question
+                            }}</a></p>
                             @empty
                             <p>Nothing to show</p>
                         @endforelse

@@ -2,24 +2,28 @@
 
 namespace App\Providers;
 
-use App\Document;
-//use Illuminate\Support\Facades\Blade;
+
+use App\Repositories\DocumentRepository;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider {
     
     public function boot()
     {
         view()->composer('layouts.footer', function ($view) {
+            $repository = new DocumentRepository();
             $view->with([
-                'years'    => Document::years(),
-                'archives' => Document::archives()
-            ]);
+                            'years'    => $repository->years(),
+                            'archives' => $repository->archives(),
+                        ]);
         });
     }
     
     public function register()
     {
-        //
+        $this->app->singleton('DocumentRepository', function () {
+            return new DocumentRepository();
+        });
     }
 }

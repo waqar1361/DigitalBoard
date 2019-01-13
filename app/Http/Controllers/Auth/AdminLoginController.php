@@ -39,6 +39,7 @@ class AdminLoginController extends Controller {
      */
     public function __construct()
     {
+        $this->middleware('guest')->only('showLoginForm');
         $this->middleware('guest:admin')->except('logout');
     }
     

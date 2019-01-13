@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\faq;
-use App\Mail\answer;
+use App\FAQ;
 use Illuminate\Http\Request;
 
 class FAQController extends Controller {
@@ -13,6 +12,7 @@ class FAQController extends Controller {
         parent::__construct();
         $this->middleware('auth:admin')->except([
             "index",
+            'show',
             'createQuestion',
             'storeQuestion',
         ]);
@@ -20,21 +20,24 @@ class FAQController extends Controller {
     
     public function index()
     {
-        $faqs = faq::latest()->answered()->get();
+        $faqs = FAQ::latest('views')->answered()->get();
         
         return view('faqs.index', compact("faqs"));
     }
     
-    public function show(faq $faq)
+    public function show(FAQ $faq)
     {
+        $faq->addView();
+        
         return view('faqs.show', compact("faq"));
     }
     
     public function faqs()
     {
-        $faqs = faq::latest()->questions()->get();
+        $faqs = FAQ::latest()->questions()->get();
+        $archives = FAQ::latest()->answered()->take(10)->get();
         
-        return view('admin.faqs', compact("faqs"));
+        return view('admin.faqs', compact("faqs", 'archives'));
     }
     
     public function createQuestion()
@@ -44,39 +47,27 @@ class FAQController extends Controller {
     
     public function storeQuestion(Request $request)
     {
-        $request->validate([
+        FAQ::create($request->validate([
             'name'     => "required|min:3|string",
             'email'    => "required|email",
             'question' => "required|string|min:5",
-        ]);
-        
-        faq::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'question' => $request->question,
-        ]);
+        ]));
         
         return redirect('/');
     }
     
-    public function createAnswer(faq $faq)
+    public function createAnswer(FAQ $faq)
     {
         return view('admin.faq', compact("faq"));
     }
     
-    public function storeAnswer(Request $request, faq $faq)
+    public function storeAnswer(Request $request, FAQ $faq)
     {
-//        return $faq;
-        $request->validate([
+        $answer = $request->validate([
             'answer' => "required|string|min:5",
         ]);
-        
-        $faq->update([
-            'answer' => $request->answer
-        ]);
-        
-        
-        \Mail::to($faq->email)->send(new answer($faq));
+        $faq->update(compact('answer'));
+        $faq->mail();
         
         return redirect()->back();
     }

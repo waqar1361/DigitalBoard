@@ -10,6 +10,13 @@ class Department extends Model {
     {
         return 'name';
     }
+    /*
+     *      RelationShips
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
     
     public function documents()
     {
@@ -26,6 +33,9 @@ class Department extends Model {
         return $this->hasMany(Document::class)->notifications();
     }
     
+    /*
+     *      Scopes
+     */
     public function scopeDepts($query, $type)
     {
         return $query->where('type', $type)->orderBy('name')->get();

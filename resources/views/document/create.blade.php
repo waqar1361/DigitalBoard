@@ -9,7 +9,7 @@
         <div class="col-10">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Publish new Notice/Notification</h4>
+                    <h4 class="card-title">Upload New Notice/Notification</h4>
                 </div>
                 <div class="card-body">
                     <form class="form-signin" action="{{ route('store.doc') }}" method="post" enctype="multipart/form-data">
@@ -51,7 +51,8 @@
                             <label for="custom-file">Select File PDF or Image or Docx</label>
                             <div class="custom-file" id="custom-file">
                                 <input type="file" id="validatedCustomFile" name="upload_file" class="custom-file-input {{ $errors->has
-                                    ('upload_file')? "is-invalid":"" }}" @change="fileLabel = $event.target.files[0].name" placeholder="Select your file">
+                                    ('upload_file')? "is-invalid":"" }}" @change="fileLabel = $event.target.files[0].name"
+                                       placeholder="Select your file">
                                 <label class="custom-file-label" for="validatedCustomFile">Choose Your File</label>
                                 @if ($errors->has('upload_file'))
                                     <strong class="invalid-feedback">{{ $errors->first('upload_file') }}</strong>
@@ -74,18 +75,20 @@
                                 @endif
                             </div>
                         </div>
-                        
+    
                         <div class="form-group">
                             <label for="issued_at">Date when issued</label>
-                            <input type="date" id="issued_at" name="issued_at" class="form-control col-3 {{ $errors->has
-                            ('issued_at')? "is-invalid" : "" }}" value="{{ old('issued_at') }}" placeholder="issued_at">
-                            
+                            <input type="text" data-type="date" id="issued_at" name="issued_at" class="form-control col-3 {{
+                            $errors->has
+                            ('issued_at')? "is-invalid" : "" }}" value="{{ old('issued_at') }}" placeholder="issued_at"  autocomplete="off">
+        
                             @if ($errors->has('issued_at'))
                                 <strong class="invalid-feedback">{{ $errors->first('issued_at') }}</strong>
                             @endif
+    
                         </div>
-                        
-                        
+    
+    
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Publish</button>
                         </div>

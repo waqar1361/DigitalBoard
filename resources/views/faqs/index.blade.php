@@ -1,16 +1,37 @@
 @extends('layouts.app')
+@section('page','landing')
+@section('header')
+    <div class="page-header page-header-mini" filter-color="">
+        <div class="page-header-image" data-parallax="true" style="background-image:url({{config('app.image-path')}});">
+        </div>
+        <div class="container">
+            <h2 class="text-capitalize">FAQ's</h2>
+            <p>Hope you'll get your answers</p>
+        </div>
+    </div>
+@endsection
 
 @section('content')
     
-    @if(! count($faqs))
-        <p>There's Nothing to show</p>
-    @endif
-    <section class="p-4">
-        <ol class="faqs">
-            @foreach($faqs as $faq)
-                <li><a href="/faqs/{{$faq->id}}">{{$faq->question}}</a></li>
-            @endforeach
-        </ol>
-    </section>
+    <div class="my-5">
+        <div class="col-md card">
+            @if(! count($faqs))
+                <h2>There's Nothing to show</h2>
+            @endif
+            <section class="py-4">
+                <h3 class="card-title">Frequently Asked Questions</h3>
+                <hr>
+                <ol>
+                    @foreach($faqs as $faq)
+                        <h5>
+                        <li>
+                            <a href="/faqs/{{$faq->id}}">{{$faq->question}}</a>
+                        </li>
+                        </h5>
+                    @endforeach
+                </ol>
+            </section>
+        </div>
+    </div>
 
 @endsection

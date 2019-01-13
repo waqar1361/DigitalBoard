@@ -55,7 +55,6 @@ class DocumentFormRequest extends FormRequest {
             'extension'     => $this->fileExtension,
         ];
         
-        
     }
     
     public function persist()

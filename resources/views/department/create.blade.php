@@ -23,16 +23,16 @@
                             <input type="text" id="fullName" name="full_name" class="form-control" v-model="full_name"
                                    placeholder="Full Name" autofocus>
                         </div>
-                        <div class="form-group">
-                            <label for="type">Type</label>
-                            <select name="type" id="type" class="custom-select" :class="{ 'is-invalid' :
-                            typeError  }"
-                                    v-model="type">
-                                <option value="Government">Government</option>
-                                <option value="Semi-Government">Semi Government</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<label for="type">Type</label>--}}
+                            {{--<select name="type" id="type" class="custom-select" :class="{ 'is-invalid' :--}}
+                            {{--typeError  }"--}}
+                                    {{--v-model="type">--}}
+                                {{--<option value="Government">Government</option>--}}
+                                {{--<option value="Semi-Government">Semi Government</option>--}}
+                                {{--<option value="Private">Private</option>--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
                         <div class="form-group d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-success col-2">Add</button>
                         </div>

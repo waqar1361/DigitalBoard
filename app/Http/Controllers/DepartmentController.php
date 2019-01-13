@@ -18,15 +18,18 @@ class DepartmentController extends Controller {
         return view('department.index');
     }
     
+    public function create()
+    {
+        return view('department.create');
+    }
+    
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|min:3',
+        Department::create($request->validate([
+            'name'      => 'required|min:3',
             'full_name' => 'nullable',
-            'type' => 'required'
-        ]);
-        
-        Department::create($data);
+//            'type'      => 'required'
+        ]));
         
         return ["added successfully"];
     }

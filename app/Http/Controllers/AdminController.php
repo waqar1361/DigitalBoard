@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Document;
-use Illuminate\Http\Request;
+use App\Repositories\DocumentRepository;
+use File;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller {
+    
     /**
      * Create a new controller instance.
      *
@@ -17,30 +18,79 @@ class AdminController extends Controller
         parent::__construct();
         $this->middleware('auth:admin');
     }
+    
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(DocumentRepository $repository)
     {
-        $labels = Document::oldest()->year()->pluck('year');
-        $values = Document::oldest()->year()->pluck('published');
-        $data = json_encode([
-            'labels' => $labels,
-            'values' => $values,
-        ]);
-        return view('admin.dashboard',compact('data'));
+        return view('admin.dashboard')
+            ->with([
+                       'data' => $repository->chartData(),
+                   ]);
     }
     
-    public function createDepartment()
+    public function show()
     {
-        return view('department.create');
+        $documents = Document::latest()->allowed()->get();
+        
+        return view('document.docs', compact('documents'));
     }
     
-    public function createDocument()
+    public function pending()
     {
-        return view('document.create');
+        $documents = Document::latest()->pending()->get();
+        
+        return view('document.pending', compact('documents'));
     }
+    
+    public function blocked()
+    {
+        $documents = Document::latest()->blocked()->get();
+        
+        return view('document.blocked', compact('documents'));
+    }
+    
+    public function block(Document $document)
+    {
+        $document->blocked = 1;
+        $document->save();
+        flash('Blocked');
+        
+        return back();
+    }
+    
+    public function unblock(Document $document)
+    {
+        $document->blocked = 0;
+        $document->save();
+        flash('Un-Blocked');
+        
+        return back();
+    }
+    
+    public function publish(Document $document)
+    {
+        $document->published = 1;
+        $document->save();
+        flash('Published');
+        
+        return back();
+    }
+    
+    public function destroy(Document $document)
+    {
+        $path = 'storage/' . $document->file . '.' . $document->extension;
+        if (file_exists($path))
+            unlink($path);
+        
+        $document->delete();
+        flash("Deleted");
+        
+        return back();
+    }
+    
     
 }

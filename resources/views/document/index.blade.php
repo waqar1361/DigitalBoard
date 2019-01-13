@@ -1,69 +1,103 @@
 @extends('layouts.app')
+@section('page','landing')
+@section('header')
+    <div class="page-header page-header-mini clear-filter">
+        <div class="page-header-image" data-parallax="true" style="background-image:url({{config('app.image-path')}});">
+        </div>
+        <div class="container">
+            <h2 class="text-capitalize">Download {{ $document->type }} </h2>
+            <p>Click on open for preview and for download click on download button given below</p>
+        </div>
+    </div>
+@endsection
+
 @section('content')
-    
-    <div class="row">
-        <div class="offset-md-1 col-md-7">
-            <h3 class="text-justify mb-4">{{ $document->subject }}</h3>
-            <table class="table table-bordered table-striped text-capitalize">
-                <tr>
-                    <th>Type :</th>
-                    <th>department :</th>
-                </tr>
-                <tr>
-                    <td>{{ $document->type }}</td>
-                    <td>{{ $document->department->name }}</td>
-                </tr>
-                <tr>
-                    <th>date issued :</th>
-                    <th>size :</th>
-                </tr>
-                <tr>
-                    <td>{{ $document->issued_at->format("M, d, Y") }}</td>
-                    <td>{{ $document->fileSize() }} MB</td>
-                </tr>
-                <tr>
-                    <th>View :</th>
-                    <th>Download :</th>
-                </tr>
-                <tr>
-                    <td><a class="btn btn-primary" href="/documents/{{ $document->file }}"><span class="fas fa-file-pdf"></span>
-                            open</a></td>
-                    <td><a class="btn btn-primary" href="/download/{{ $document->file }}">
-                            <span class="fas fa-download"></span> Download</a>
-                    </td>
-                </tr>
-            </table>
+    <div class="mx-auto col-md-9 my-5">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-4">{{ $document->subject }}</h3>
+                
+                <section class="row justify-content-around bg-light">
+                    <span><i class="fa fa-eye"></i> {{$document->views}}</span>
+                    <span><i class="fa fa-download"></i> {{$document->downloads}}</span>
+                    <span><i class="fa fa-bookmark"></i> {{ $document->users->count() }}</span>
+                </section>
+                
+                <a href="{{ $document->isBookmarked() ?
+                        route('unmark.document',$document->file) :
+                        route('bookmark.document',$document->file) }}"
+                   class="btn btn-outlne-info btn-sm pull-right">
+                    <i class="{{ $document->isBookmarked() ? "fa" : "far" }} fa-bookmark   "></i>
+                    {{ $document->isBookmarked() ? "Remove" : "Save" }}
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped text-capitalize">
+                    <tr>
+                        <th>Type :</th>
+                        <th>department :</th>
+                    </tr>
+                    <tr>
+                        <td>{{ $document->type }}</td>
+                        <td>{{ $document->department->name }}</td>
+                    </tr>
+                    <tr>
+                        <th>date issued :</th>
+                        <th>size :</th>
+                    </tr>
+                    <tr>
+                        <td>{{ $document->issued_at->format("M, d, Y") }}</td>
+                        <td>{{ $document->fileSize }} MB</td>
+                    </tr>
+                    <tr>
+                        <th>View :</th>
+                        <th>Download :</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="" href="/documents/{{ $document->file }}">open</a>
+                        </td>
+                        <td>
+                            <a class="" href="/download/{{ $document->file }}">Download</a>
+                        </td>
+                    </tr>
+                </table>
             
-            
-            <section class="card col-md-6 p-2">
-                <h4>Share on</h4>
-                <div class="container-fluid">
-                    <nav class="d-flex text-justify">
-                        {{--  FACEBOOK  --}}
-                        <a class="py-0 px-1 brand rounded facebook nav-link"
-                           data-toggle="tooltip" data-placement="bottom" title="Share on Facebook"
-                           href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&title={{config('app.name')}}"
-                           target="_blank"><span class="fab fa-2x fa-facebook"></span></a>
-                        {{--  TWITTER --}}
-                        <a class="py-0 px-1 brand rounded twitter nav-link"
-                           data-toggle="tooltip" data-placement="bottom" title="Share on Twitter"
-                           href="https://twitter.com/share?url={{url()->current()}}&text={{$document->subject}}&hashtags={{config('app.name')}}"
-                           target="_blank"><span class="fab fa-2x fa-twitter-square"></span></a>
-                        {{--  GOOGLE PLUS --}}
-                        <a class="py-0 px-1 brand rounded plus nav-link"
-                           href="https://plus.google.com/share?url={{url()->current()}}"
-                           data-toggle="tooltip" data-placement="bottom" title="Share on Google Plus"
-                           target="_blank"><span class="fab fa-2x  fa-google-plus-square"></span></a>
-                        {{--  LINKEDIN  --}}
-                        <a class="py-0 px-1 brand rounded linkedIn nav-link"
-                           data-toggle="tooltip" data-placement="bottom" title="Share on LinkedIn"
-                           href="http://www.linkedin.com/shareArticle?url={{url()->current()}}&title={{$document->subject}}"
-                           target="_blank"><span class="fab fa-2x  fa-linkedin"></span></a>
-                    </nav>
-                </div>
-            </section>
+            </div>
+            <h4 class="text-center">Share on</h4>
+            <div class="card-footer text-center border-top bg-light">
+                
+                <a href="http://www.linkedin.com/shareArticle?url={{url()->current()}}&title={{$document->subject}}"
+                   class="btn btn-neutral btn-icon btn-linkedin btn-round"
+                   rel="tooltip" title="Share on" data-placement="bottom">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                
+                <a href="https://twitter.com/share?url={{url()->current()}}&text={{$document->subject}}&hashtags={{config('app.name')}}"
+                   class="btn btn-neutral btn-icon btn-twitter btn-round btn-lg"
+                   rel="tooltip" title="Share on Twitter" data-placement="bottom">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&title={{config('app.name')}}"
+                   class="btn btn-neutral btn-icon btn-facebook btn-round btn-lg"
+                   rel="tooltip" title="Share on FaceBook" data-placement="bottom">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                
+                <a href="https://plus.google.com/share?url={{url()->current()}}"
+                   class="btn btn-neutral btn-icon btn-google btn-lg btn-round"
+                   rel="tooltip" title="Share on Google Plus" data-placement="bottom">
+                    <i class="fab fa-google"></i>
+                </a>
+                
+                <a href="{{url()->current()}}"
+                   class="copy-link btn btn-neutral btn-icon btn-github btn-round"
+                   rel="tooltip" title="Copy Link" data-placement="bottom">
+                    <i class="fab"><span class="fa fa-link"></span></i>
+                </a>
+            </div>
         
         </div>
-    
     </div>
 @endsection

@@ -153,4 +153,7 @@ $(document).ready(function () {
         $('[data-toggle="popover"]').popover()
     })
     
+    $('.browse-select').on('change', function () {
+      $('#browse-form').submit();
+    })
 });

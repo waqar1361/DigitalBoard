@@ -4,11 +4,12 @@
   -->
     <div class="logo">
         <a href="{{url('/')}}" class="simple-text logo-mini">
-            <img src="{{ asset('logo.jpg') }}" alt="NNB">
+            <img src="{{ asset('favicon.png') }}" alt="NNB">
         </a>
         <a href="{{url('/')}}" class="simple-text logo-normal" data-toggle="tooltip" data-placement="bottom"
            title="{{config('app.name')}}">NationalNoticeBoard</a>
     </div>
+    
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="{{ Nav::isRoute('admin.home') }}">
@@ -23,32 +24,55 @@
                     <p>Department</p>
                 </a>
             </li>
+    
+    
+            <li class="{{ Nav::isRoute('admin.show.docs') }}">
+                <a href="{{ route('admin.show.docs') }}">
+                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <p>Notices</p>
+                </a>
+            </li>
+            
             <li class="{{ Nav::isRoute('admin.create.doc') }}">
                 <a href="{{ route('admin.create.doc') }}">
                     <i class="now-ui-icons ui-1_simple-add"></i>
-                    <p>Notice / Notification</p>
+                    <p>Upload Notice</p>
                 </a>
             </li>
+            
+            <li class="{{ Nav::isRoute('admin.pending') }}">
+                <a href="{{ route('admin.pending') }}">
+                    <i class="now-ui-icons files_single-copy-04"></i>
+                    <p>Pending Notices</p>
+                </a>
+            </li>
+            
+            <li class="{{ Nav::isRoute('admin.blocked.doc') }}">
+                <a href="{{ route('admin.blocked.doc') }}">
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                    <p>Blocked Notices</p>
+                </a>
+            </li>
+            
             <li class="{{ Nav::isRoute('admin.faqs') }}">
                 <a href="{{ route('admin.faqs') }}">
                     <i class="now-ui-icons design_bullet-list-67"></i>
                     <p>FAQ's</p>
                 </a>
             </li>
-    
-    
-     
-            <li class="active-pro">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" title="Logout">
-                    <i class="now-ui-icons media-1_button-power"></i>
-                    <p>Logout</p>
-                </a>
-                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-    
-            </li>
+            
+            
+            {{--<li class="active-pro">--}}
+            {{--<a href="{{ route('logout') }}" onclick="event.preventDefault();--}}
+            {{--document.getElementById('logout-form').submit();" title="Logout">--}}
+            {{--<i class="now-ui-icons media-1_button-power"></i>--}}
+            {{--<p>Logout</p>--}}
+            {{--</a>--}}
+            {{--<form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">--}}
+            {{--{{ csrf_field() }}--}}
+            {{--</form>--}}
+            {{----}}
+            {{--</li>--}}
         </ul>
     </div>
 </div>

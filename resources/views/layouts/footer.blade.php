@@ -1,97 +1,92 @@
-<footer class="card" id="test">
+<footer class="footer mt-5" data-background-color="black">
     
-    <div class="row">
-        
-        <div class="col-md-3">
-            <h3>Departments</h3>
-            <hr>
-            <ul class="list-unstyled text-capitalize">
-                @foreach(Dept::all() as $dept)
-                    <li>
-                        <a href="browse?dept={{ $dept->name }}" data-toggle="tooltip" data-placement="bottom"
-                           title="{{ $dept->full_name or $dept->name }}">{{$dept->name}}</a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-        
-        <div class="col-md">
-            <h3>Important Links</h3>
-            <hr>
-            <nav class="d-flex flex-column">
-                <a href="/browse?type=notice">Notices</a>
-                <a href="/browse?type=notification">Notifications</a>
-                <a href="/support">Support</a>
-                <a href="/faqs">FAQ's</a>
-            </nav>
-            <hr>
+    <div class="container">
+        <div class="row">
             
-            <h4>Theme : </h4>
-            
-            <div class="btn-group form-group" role="group" aria-label="themes">
-                <button id="light" type="button" @click="light" class="btn btn-light {{ $_COOKIE['theme'] == 'light' ?
-                "disabled" : "" }}">Light
-                </button>
-                <button id="dark" type="button" @click="dark" class="btn btn-dark {{ $_COOKIE['theme'] == 'dark' ?
-                "disabled" : "" }}">Dark
-                </button>
+            <div class="col-md">
+                <h3>Important Links</h3>
+             
+                <ul class="d-flex flex-column text-md-left text-center">
+                    <h5><a href="/browse?type=notice">Notices</a></h5>
+                    <h5><a href="/browse?type=notification">Notifications</a></h5>
+                    <h5><a href="/support">Support</a></h5>
+                    <h5><a href="/faqs">FAQ's</a></h5>
+                </ul>
             </div>
-        
-        </div>
-    
-    
-    
-        <div class="col-md accordion" id="archive">
-            <h3>Archives</h3>
-            <hr>
-            @foreach($years as $year)
-                <div>
-                    <div id="{{$year->year}}">
-                        <h5 title="Click to expand" >
-                            <a role="button" data-toggle="collapse"
-                                    href="#{{$year->year}}-body"
-                                    aria-expanded="false"
-                                    aria-controls="{{$year->year}}-body">
-                                {{$year->year}}
-                            </a>
-                            <span class="badge badge-dark badge-pill fa-pull-right">{{ $year->published }}</span>
-                        </h5>
-                    </div>
-                
-                    <div id="{{$year->year}}-body" class="collapse" aria-labelledby="{{$year->year}}" data-parent="#archive">
-                        {{--<div class="card-body">--}}
-                            <ul class="list-unstyled">
+            <div class="col"></div>
+            <div class="col-md-2 accordion" id="archive">
+                <h3 class="text-center">Archives</h3>
+
+                @foreach($years as $year)
+                    <div class="text-justify">
+                        <div id="{{$year->name}}">
+                            <h5 title="Click to expand">
+                                <a role="button" data-toggle="collapse"
+                                   href="#{{$year->name}}-body"
+                                   aria-expanded="false"
+                                   aria-controls="{{$year->name}}-body">
+                                    {{$year->name}}
+                                </a>
+                                <span class="badge badge-dark badge-pill fa-pull-right">{{ $year->published }}</span>
+                            </h5>
+                        </div>
+                        
+                        <div id="{{$year->name}}-body" class="collapse" aria-labelledby="{{$year->name}}" data-parent="#archive">
+                            <div class="card-body">
+                            <ul class="list-group">
                                 @foreach($archives as $state)
-                                    @if( $year->year == $state->year )
-                                        <li>
+                                    @if( $year->name == $state->year )
+                                        <li class="">
                                             <a href="/browse?month={{ $state->month }}&year={{ $state->year }}">
                                                 {{ $state->month }}
                                             </a>
-                                            <span class="badge badge-secondary badge-pill fa-pull-right">{{ $state->published }}</span>
+                                            <span class="badge fa-pull-right">{{ $state->published }}</span>
                                         </li>
                                     @endif
                                 @endforeach
                             </ul>
-                        {{--</div>--}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            
+        </div>
+    
+        <div class="row justify-content-md-center sharing-area text-center">
+            <div class="text-center col-md-12 col-lg-8">
+                <h3>Thank you for supporting us!</h3>
+            </div>
+            <div class="text-center col-md-12 col-lg-8">
+                <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-twitter btn-round btn-lg" rel="tooltip"
+                   title="Follow us">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-facebook btn-round btn-lg" rel="tooltip"
+                   title="Like us">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+                <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-linkedin btn-lg btn-round" rel="tooltip"
+                   title="Follow us">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-google btn-lg btn-round" rel="tooltip"
+                   title="Follow us">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-github btn-round btn-lg" rel="tooltip"
+                   title="Star on Github">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
         </div>
         
-        <div class="col-md-3">
-            <h3>Follow Us</h3>
-            <hr>
-            <nav class="d-flex text-justify">
-                <a class="py-0 px-1 brand rounded facebook nav-link" href="#"><span class="fab fa-3x fa-facebook"></span></a>
-                <a class="py-0 px-1 brand rounded plus nav-link" href="#"><span class="fab fa-3x fa-google-plus-square"></span></a>
-                <a class="py-0 px-1 brand rounded github nav-link" href="#"><span class="fab fa-3x fa-github-square"></span></a>
-            </nav>
-            
-            <p>Developed By :<br> Mohammad Waqar</p>
-            <p>Contact :<br> <a href="mailto:waqarqadri6@gmail.com">waqarqadri6@gmail.com</a></p>
-        </div>
     </div>
-    <hr>
-    <p>&copy; {{ date("Y") }} All rights reserved. Our <a href="#">terms</a> and <a href="#">policy</a></p>
+        <hr>
+    <p class="text-center m-0">
+        &copy; {{ date("Y") }}, All rights reserved by {{ config('app.name') }}. Developed By
+        <a href="mailto:waqarqadri6@gmail.com">Muhammad Waqar</a>, Group # 17,
+        <a href="http://www.giccl.edu.pk/">Govt. Islamia College</a> Civil Lines LHR.
+    </p>
     <a id="toTop" class="fa" style="display: none"></a>
 </footer>

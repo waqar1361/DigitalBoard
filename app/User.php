@@ -9,21 +9,51 @@ class User extends Authenticatable {
     
     use Notifiable;
     
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'notify',
     ];
     
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    /*
+     *      RelationShips
+     */
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class)->orderBy('name');
+    }
+    
+    public function bookmarks()
+    {
+        return $this->belongsToMany(Document::class);
+    }
+    
+    
+    public function documents()
+    {
+        if ( ! $this->departments()->count())
+            return [];
+        $find = Document::query();
+        foreach ($this->departments as $dept)
+        {
+            $find->orWhere('department_id', $dept->id);
+        }
+        
+        return $find->get();
+    }
+    
+    public function suggestions()
+    {
+        return Department::whereDoesntHave('users', function ($query) {
+            $query->where('user_id', $this->id);
+        })->orderBy('name')->get();
+    }
+    
+    public function scopeNotifiable($query)
+    {
+        return $query->where('notify', 1);
+    }
 }

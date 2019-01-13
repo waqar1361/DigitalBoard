@@ -13,6 +13,8 @@ class Controller extends BaseController {
     
     public function __construct()
     {
+        $this->middleware('after')->except(['open', 'download']);
+    
         if (empty($_COOKIE['theme']))
         {
             setcookie('theme', 'light', time() + (86400 * 30), "/");
@@ -24,8 +26,6 @@ class Controller extends BaseController {
             setcookie('layout', 'list', time() + (86400 * 30), "/");
             $_COOKIE['layout'] = 'list';
         }
-        
-        $this->middleware('after')->except(['open', 'download']);
     }
     
 }

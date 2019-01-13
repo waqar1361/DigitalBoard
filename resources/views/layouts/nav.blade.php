@@ -1,34 +1,49 @@
-<nav class="navbar navbar-expand-md shadow navbar-dark rounded my-3">
-    
-    <a class="navbar-brand" data-toggle="tooltip" data-placement="bottom" href="/"
-       title="National Notices Board">NNB</a>
-    
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBar" aria-controls="navBar"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navBar">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item {{ Nav::isRoute('home') }} ">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item {{ Nav::hasSegment('browse') }} ">
-                <a class="nav-link" href="/browse">Browse</a>
-            </li>
-            
-            @auth('admin')
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="100">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/" >
+                <img src="{{ asset('favicon.png') }}" alt="nnb" width="30" height="30" />
+            </a>
+            <a class="navbar-brand" href="/">{{ config('app.name') }}</a>
+            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar top-bar"></span>
+                <span class="navbar-toggler-bar middle-bar"></span>
+                <span class="navbar-toggler-bar bottom-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{config('app.image-path')}}">
+            <ul class="navbar-nav">
+                
+                <li class="nav-item {{ Nav::isRoute('home') }} ">
+                    <a class="nav-link" href="/">
+                        <p>Home</p>
+                    </a>
                 </li>
-            @endauth
-            
-            @guest('admin')
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/login">Admin</a>
+                <li class="nav-item {{ Nav::hasSegment('browse') }} ">
+                    <a class="nav-link" href="/browse">Browse</a>
                 </li>
-            @endguest
-        
-        </ul>
+                
+                @auth('admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">Admin</a>
+                    </li>
+                @endauth
+                
+                @auth()
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('users.home')}}">Dashboard</a>
+                    </li>
+                @endauth
+                
+                @guest()
+                    @guest('admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('login')}}">Log In</a>
+                        </li>
+                    @endguest
+                @endguest
+            
+            </ul>
+        </div>
     </div>
-
 </nav>

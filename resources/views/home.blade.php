@@ -1,62 +1,83 @@
 @extends('layouts.app')
-@php($size = 4)
-
+@section('page','index')
 @section('header')
-    <header class="text-center"><span id="bismilla">1</span></header>
+    
+    <div class="page-header clear-filter">
+        <div class="page-header-image" data-parallax="true" style="background-image:url({{config('app.image-path')}})">
+        </div>
+        <div class="container">
+            <div class="content-center brand">
+                <img class="n-logo" src="/images/Logo.png" alt="NNB">
+                <h1 class="h1-seo">National Notice Board</h1>
+                <h5>Notices & Notifications of any department in Pakistan <br> Free Download</h5>
+                <a href="/browse" class="btn btn-sm btn-primary">Browse Now</a>
+            </div>
+            <h6 class="category category-absolute">
+                Developed By Group # 17's Team Lead
+                <a href="mailto:waqarqadri6@gmail.com">
+                    Muhammad Waqar
+                </a>
+            </h6>
+        </div>
+    </div>
 @endsection
+
 @section('content')
     
-    <div class="jumbotron">
-        <h1 class="display-4 ff-BR">National Notice Board</h1>
+    <div class="page row">
         
-        <p class="lead text-justify">
-            Welcome to National Notice Board, We provide notices and notifications of different departments in Pakistan. You
-            can view them online and also can download them. Documents are available in these formats PDf, Image or docx. You can
-            <a href="/browse">browse</a> different notices and notifications, and filter through as you need, search and find
-            your required notice or notification.
-        </p>
-    
+        <section class="col-md">
+            <div class="card mb-4">
+                
+                <div class="card-header">
+                    <h2 class="card-title text-center">Latest Notices</h2>
+                </div>
+                
+                <div class="card-body">
+                    @foreach( $notices as $item)
+                        <p>
+                            @if($item->created_at->diffInDays(Carbon::now()) < 8)
+                                <span class="badge bg-primary">New</span>
+                            @endif
+                            <a href="/browse/{{ $item->file }}" title="{{$item->subject}}">
+                                {{ $item->subject }}
+                            </a>
+                            <span class="pull-right" data-toggle="tooltip" title="Issued Date">
+                                {{ $item->issued_at->format('M-d, Y') }}
+                            </span>
+                        </p>
+                    @endforeach
+                    <div class="text-center">[ <a href="/browse?type=notice&sort=latest">view more</a> ]</div>
+                </div>
+            
+            </div>
+        </section>
+        
+        <section class="col-md">
+            <div class="card border-dark mb-4">
+                
+                <div class="card-header">
+                    <h2 class="card-title text-center">Latest Notifications</h2>
+                </div>
+                
+                <div class="card-body">
+                    @foreach( $notifications as $item)
+                        <p>
+                            @if($item->created_at->diffInDays(Carbon::now()) < 8)
+                                <span class="badge bg-primary">New</span>
+                            @endif
+                            <a href="/browse/{{ $item->file }}" title="{{$item->subject}}">
+                                {{ $item->subject }}
+                            </a>
+                            <span class="pull-right" data-toggle="tooltip" title="Issued Date">
+                                {{ $item->issued_at->format('M-d, Y') }}
+                            </span>
+                        </p>
+                    @endforeach
+                    <div class="text-center">[ <a href="/browse?type=notification&sort=latest">view more</a> ]</div>
+                </div>
+            
+            </div>
+        </section>
     </div>
-    
-    
-    <section class="row">
-        
-        <div class="col-md">
-            <div class="card border-dark mb-4">
-                <h2 class="card-header">Latest Notices
-                    <small>[ <a href="/browse?type=notice&sort=latest">view all</a> ]</small>
-                </h2>
-                
-                <section class="card-body">
-                    @foreach( Doc::latest()->notices()->take(5)->get() as $item)
-                        <p>
-                            <a href="/browse/{{ $item->file }}" title="{{$item->subject}}">
-                                {{ $item->subject }}
-                            </a>
-                        </p>
-                    @endforeach
-                </section>
-            </div>
-        </div>
-        
-        <div class="col-md">
-            <div class="card border-dark mb-4">
-                <h2 class="card-header">Latest Notifications
-                    <small>[ <a href="/browse?type=notification&sort=latest">view all</a> ]</small>
-                </h2>
-                
-                <section class="card-body">
-                    @foreach( Doc::latest()->notifications()->take(5)->get() as $item)
-                        <p>
-                            <a href="/browse/{{ $item->file }}" title="{{$item->subject}}">
-                                {{ $item->subject }}
-                            </a>
-                        </p>
-                    @endforeach
-                </section>
-            </div>
-        </div>
-    
-    </section>
-
 @endsection

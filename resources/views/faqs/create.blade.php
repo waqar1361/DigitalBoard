@@ -1,9 +1,19 @@
 @extends('layouts.app')
-
+@section('page','landing')
+@section('header')
+    <div class="page-header page-header-mini" filter-color="">
+        <div class="page-header-image" data-parallax="true" style="background-image:url({{config('app.image-path')}});">
+        </div>
+        <div class="container">
+            <h2 class="text-capitalize">Support</h2>
+            <p>Submit your question, we'll answer your question with in 3 business days</p>
+        </div>
+    </div>
+@endsection
 @section('content')
-    <div class="row">
-        <div class="col-8">
-            <section class="card">
+    <div class="my-5">
+        <section class="card">
+            <div class="col-md">
                 
                 <h2 class="card-header">What is your Question?</h2>
                 
@@ -53,19 +63,20 @@
                 
                 
                 </form>
-            </section>
-        </div>
-        <div class="col">
-            <h2>For More Information</h2>
-            <div class="container-fluid">
-                <strong>Contact :</strong>
-                <span>0300-1234567</span>
             </div>
-            <div class="container-fluid">
-                <strong>E-Mail :</strong>
-                <span>info@nnb.com</span>
+  
+            <div class="col-md card-body">
+                <h2>For More Information</h2>
+                <div class="container-fluid">
+                    <strong>Contact :</strong>
+                    <span>0300-1234567</span>
+                </div>
+                <div class="container-fluid">
+                    <strong>E-Mail :</strong>
+                    <span>info@nnb.com</span>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 
 @endsection

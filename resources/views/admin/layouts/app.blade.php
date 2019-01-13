@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Waqar">
     
-    <link rel="icon" href="{{ asset("/favicon.jpg") }}">
+    <link rel="icon" href="{{ asset("/favicon.ico") }}">
     <title>{{ config('app.name') }}</title>
     
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link href="{{ asset("css/bootstrap.min.css") }}" media="all" rel="stylesheet">
-    <link href="{{ asset("css/dashboard.min.css") }}" media="all" rel="stylesheet">
-    <link href="{{ asset("css/admin.css") }}" media="all" rel="stylesheet">
+    <link href="{{ asset("css/libs/fontawesome.css") }}" rel="stylesheet">
+    <link href="{{ asset("css/libs/bootstrap.min.css") }}" media="all" rel="stylesheet">
+    <link href="{{ asset("css/libs/bootstrap-datepicker.min.css") }}" media="all" rel="stylesheet">
+    <link href="{{ asset("css/admin/dashboard.min.css") }}" media="all" rel="stylesheet">
+    
+    <link href="{{ asset("css/admin/style.css") }}" media="all" rel="stylesheet">
+
 </head>
 <body class="">
 
@@ -30,25 +33,14 @@
         
         <footer class="footer">
             <div class="container">
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                About Us
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                
                 <div class="copyright" id="copyright">
                     &copy; {{ date('Y') }}
                     , All rights are reserved by National Notice Board.
-                    Coded by
-                    <a href="mailto:waqarqadri6@gmail.com" target="_blank">Mohammad Waqar</a>.
+                    Developed by
+                    <a href="mailto:waqarqadri6@gmail.com">Muhammad Waqar</a>
+                    , Group # 17,
+                    <a href="http://www.giccl.edu.pk/">Govt. Islamia College</a> Civil Lines LHR.
                 </div>
             </div>
         </footer>
@@ -56,19 +48,24 @@
 </div>
 
 
-
-<script src="{{ asset("js/jquery-3.3.1.min.js") }}"></script>
-<script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
+<script src="{{ asset("js/libs/jquery-3.3.1.min.js") }}"></script>
+<script src="{{ asset("js/libs/bootstrap.bundle.min.js") }}"></script>
 <script src="{{ asset("js/plugins/perfect-scrollbar.jquery.min.js") }}"></script>
 <script src="{{ asset("js/plugins/chartjs.min.js") }}"></script>
 <script src="{{ asset("js/plugins/bootstrap-notify.js") }}"></script>
-<script src="{{ asset("js/now-ui-dashboard.min.js") }}"></script>
+<script src="{{asset('js/plugins/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{ asset("js/admin/dashboard.min.js") }}"></script>
 @if(url()->current() === route("admin.create.dept"))
-<script src="{{ asset("js/axios-vue.js") }}"></script>
-<script src="{{ asset("js/script.js") }}"></script>
+    <script src="{{ asset("js/admin/axios-vue.js") }}"></script>
+    <script src="{{ asset("js/admin/script.js") }}"></script>
 @else
-<script src="{{ asset("js/admin.js") }}"></script>
+    <script src="{{ asset("js/admin/admin.js") }}"></script>
 @endif
+@if(url()->current() === route("admin.home"))
+    <script src="{{ asset("js/admin/chart.js") }}"></script>
+@endif
+
+@include('layouts.alert')
 
 </body>
 </html>

@@ -15,6 +15,14 @@ return [
     
     'name' => env('APP_NAME', 'Laravel'),
     
+    
+    /*
+     *  Header Image
+     */
+    
+    'image-path' => env('APP_HEADER_IMAGE', '/images/header.jpg'),
+    
+    
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -167,10 +175,9 @@ return [
         /*
          * Package Service Providers...
          */
-    
+        
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         DevMarketer\EasyNav\EasyNavServiceProvider::class,
-        
         
         
         /*
@@ -181,8 +188,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
-        
+    
+    
     ],
     
     /*
@@ -197,7 +204,7 @@ return [
     */
     
     'aliases' => [
-        
+    
         'App'          => Illuminate\Support\Facades\App::class,
         'Artisan'      => Illuminate\Support\Facades\Artisan::class,
         'Auth'         => Illuminate\Support\Facades\Auth::class,
@@ -205,6 +212,7 @@ return [
         'Broadcast'    => Illuminate\Support\Facades\Broadcast::class,
         'Bus'          => Illuminate\Support\Facades\Bus::class,
         'Cache'        => Illuminate\Support\Facades\Cache::class,
+        'Carbon'       => Carbon\Carbon::class,
         'Config'       => Illuminate\Support\Facades\Config::class,
         'Cookie'       => Illuminate\Support\Facades\Cookie::class,
         'Crypt'        => Illuminate\Support\Facades\Crypt::class,
@@ -231,15 +239,14 @@ return [
         'URL'          => Illuminate\Support\Facades\URL::class,
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
-        
+    
         // CUSTOM PACKAGES
-        'Share'        => Jorenvh\Share\ShareFacade::class,
         'Nav'          => DevMarketer\EasyNav\EasyNavFacade::class,
-        
+    
         /**My Models**/
         'Dept'         => App\Department::class,
         'Doc'          => App\Document::class,
-        'FAQ'          => App\faq::class,
+        'FAQ'          => App\FAQ::class,
     ],
 
 ];

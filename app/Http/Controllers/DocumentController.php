@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\Document;
+use App\Events\DocumentDownloaded as DownloadEvent;
+use App\Events\DocumentViewed as ViewEvent;
 use App\Http\Requests\DocumentFormRequest;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Repositories\DocumentRepository;
 
 class DocumentController extends Controller {
     
@@ -17,7 +19,14 @@ class DocumentController extends Controller {
     
     public function show(Document $document)
     {
+        abort_if($document->blocked, 503);
+        
         return view('document.index', compact('document'));
+    }
+    
+    public function create()
+    {
+        return view('document.create');
     }
     
     public function store(DocumentFormRequest $request)
@@ -26,83 +35,35 @@ class DocumentController extends Controller {
         $request->persist();
         $request->storeFile();
         
-        return redirect('/admin');
+        return redirect('/admin/dashboard');
     }
     
     public function open(Document $document)
     {
-        $path = "storage/" . $document->file . "." . $document->extension;
+        abort_if($document->blocked, 503);
+        ViewEvent::dispatch($document);
         
-        return response()->file($path);
+        return response()->file($document->file_path);
     }
     
     public function download(Document $document)
     {
-        $path = "storage/" . $document->file . "." . $document->extension;
+        abort_if($document->blocked, 503);
+        DownloadEvent::dispatch($document);
         
-        return response()->download($path);
+        return response()->download($document->file_path);
     }
     
-    public function browse(Request $request)
+    public function browse(DocumentRepository $repository)
     {
-        $search = $request->search;
-        $type = $request->type;
-        $sort = $request->sort;
-        $dept = $request->dept;
-        $year = $request->year;
-        $month = $request->month;
-        $find = Document::query();
-        
-        /***        Archives      ***/
-        if ($request->has('month') and $request->month != 'all')
-            $find->whereMonth('issued_at', Carbon::parse('1 ' . $request->month)->month);
-        if ($request->has('year') and $request->year != 'all')
-            $find->whereYear('issued_at', $request->year);
-        
-        /***        Search      ***/
-        if ($search !== null)
-        {
-            $keywords = explode(' ', $search);
-            foreach ($keywords as $key)
-            {
-                $find->orWhere("tags", "like", "%$key%");
-            }
-        }
-        
-        /***        Department      ***/
-        if ($dept != 'all')
-            $find->where('tags', 'like', "%$dept%");
-        
-        /***        Type      ***/
-        if ($type == 'notice')
-            $find->where('type', 'notice');
-        if ($type == 'notification')
-            $find->where('type', 'notification');
-        
-        /***     Sort By      ***/
-        
-        if ($sort == 'latest')
-            $find->orderBy("created_at");
-        if ($sort == 'oldest')
-            $find->orderByDesc("created_at");
-        if ($sort == 'alph')
-            $find->orderBy('subject');
-        
-        $total = count($find->get());
-        
-        $results = $find->paginate(15);
-        
-        $results->appends([
-            'type'   => $request->type,
-            "search" => $request->search,
-            "sort"   => $request->sort,
-            "dept"   => $request->dept,
-            "year"   => $request->year,
-            "month"  => $request->month,
-        ]);
-        
-        return view('browse', compact('results', 'search', 'sort', 'dept', 'type', 'year', 'month', 'total'));
-        
+        return view('browse')
+            ->with([
+                       'total'       => $repository->search()->count(),
+                       'results'     => $repository->search()->paginate(9)
+                                                   ->appends(request()->query()),
+                       'departments' => Department::orderBy('name')->get(),
+                       'years'       => $repository->years(),
+                   ]);
     }
     
 }

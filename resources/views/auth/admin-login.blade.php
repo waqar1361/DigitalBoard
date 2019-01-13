@@ -1,68 +1,37 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon.jpg">
+@extends('auth.app')
 
-    <title>Admin</title>
-
-    <link href="{{asset("css/app.css")}}" rel="stylesheet">
-    @if($_COOKIE['theme'] == "light")
-        <link rel="stylesheet" href="{{asset('css/theme_light.css')}}" id="theme">
-    @endif
-    @if($_COOKIE['theme'] == 'dark')
-        <link rel="stylesheet" href="{{asset('css/theme_dark.css')}}" id="theme">
-    @endif
-    <link href="{{asset("css/signin.css")}}" rel="stylesheet">
-
-</head>
-
-<body>
-<form class="form-signin" action="{{ route('admin.login.submit') }}" method="post">
-
-    {{ csrf_field() }}
-
-    <div class="text-center mb-2">
-        <img class="mb-4 rounded outset-shadow" src="{{asset('logo.jpg')}}" alt="Logo" width="120" height="120">
+@section('content')
+    <div class="container">
+        <div class="col-md-4 m-auto">
+            <div class="card card-login card-plain">
+                <form class="form" method="post" action="{{ route('admin.login.submit') }}">
+                    {{ csrf_field() }}
+                    <div class="card-header text-center">
+                        <h2>Enter Admin's Password</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group no-border input-lg">
+                            <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons users_circle-08"></i>
+                                    </span>
+                            </div>
+                            <input type="text" class="form-control" name="email" value="admin@nnb.pk" readonly>
+                        </div>
+                        <div class="input-group no-border input-lg">
+                            <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="now-ui-icons text_caps-small"></i>
+                    </span>
+                            </div>
+                            <input type="password" placeholder="Password" name="password" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <h4 class="mb-4">Sign in as Admin to continue</h4>
-
-    <div class="form-group">
-        <input type="email" id="Email" class="form-control-lg form-control" name="email" value="admin@nnb.pk" readonly>
-        {{--<label for="Email">Email address</label>--}}
-    </div>
-
-    <div class="form-label-group">
-        <input type="password" id="Password" name="password" class="form-control-lg form-control" placeholder="Password" autofocus required>
-        <label for="Password">Password</label>
-        @if ($errors->has('password'))
-            <span class="help-block">
-        <strong>{{ $errors->first('password') }}</strong>
-        </span>
-        @endif
-    </div>
-
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
-        </label>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
-    </div>
-    <div class="text-center">
-        <a href="/">Home</a>
-    </div>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; {{date('Y')}}</p>
-</form>
-
-    @foreach($errors as $error)
-        {{ $error }}
-    @endforeach
-
-</body>
-</html>
+@endsection

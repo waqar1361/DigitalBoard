@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\faq;
+use App\Document;
 use Illuminate\Http\Request;
 
 class PageController extends Controller {
@@ -15,12 +14,16 @@ class PageController extends Controller {
     
     public function index()
     {
-        return view('home');
+        return view('home')->with([
+            'notices'       => Document::latest()->notices()->take(5)->get(),
+            'notifications' => Document::latest()->notifications()->take(5)->get()
+        ]);
     }
     
     public function cookies(Request $request)
     {
         setcookie($request->name, $request->value, time() + (86400 * 30), "/");
+        
         return "Successful";
     }
     
