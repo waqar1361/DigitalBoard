@@ -14,6 +14,8 @@
     <link href="{{ asset("css/libs/bootstrap.min.css") }}" media="all" rel="stylesheet">
     <link href="{{ asset("css/main/theme.min.css") }}" media="all" rel="stylesheet">
     <link href="{{ asset("css/main/login.css") }}" media="all" rel="stylesheet">
+    <link href="{{ asset("css/style.css") }}" media="all" rel="stylesheet">
+
 </head>
 
 <body class="login-page sidebar-collapse">

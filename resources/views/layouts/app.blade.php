@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/libs/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/main/theme.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/main/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 </head>
 <body class="@yield('page')-page sidebar-collapse">

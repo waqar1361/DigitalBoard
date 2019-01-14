@@ -27,7 +27,7 @@
     <div class="page row">
         
         <section class="col-md">
-            <div class="card mb-4">
+            <div class="card card-300 mb-4">
                 
                 <div class="card-header">
                     <h2 class="card-title text-center">Latest Notices</h2>
@@ -42,8 +42,8 @@
                             <a href="/browse/{{ $item->file }}" title="{{$item->subject}}">
                                 {{ $item->subject }}
                             </a>
-                            <span class="pull-right" data-toggle="tooltip" title="Issued Date">
-                                {{ $item->issued_at->format('M-d, Y') }}
+                            <span>
+                                - issued on - {{ $item->issued_at->format('M-d, Y') }}
                             </span>
                         </p>
                     @endforeach
@@ -54,7 +54,7 @@
         </section>
         
         <section class="col-md">
-            <div class="card border-dark mb-4">
+            <div class="card card-300 border-dark mb-4">
                 
                 <div class="card-header">
                     <h2 class="card-title text-center">Latest Notifications</h2>
@@ -69,8 +69,8 @@
                             <a href="/browse/{{ $item->file }}" title="{{$item->subject}}">
                                 {{ $item->subject }}
                             </a>
-                            <span class="pull-right" data-toggle="tooltip" title="Issued Date">
-                                {{ $item->issued_at->format('M-d, Y') }}
+                            <span>
+                                - issued on - {{ $item->issued_at->format('M-d, Y') }}
                             </span>
                         </p>
                     @endforeach

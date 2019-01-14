@@ -15,8 +15,8 @@ class PageController extends Controller {
     public function index()
     {
         return view('home')->with([
-            'notices'       => Document::latest()->notices()->take(5)->get(),
-            'notifications' => Document::latest()->notifications()->take(5)->get()
+            'notices'       => Document::latest()->notices()->take(7)->get(),
+            'notifications' => Document::latest()->notifications()->take(7)->get()
         ]);
     }
     

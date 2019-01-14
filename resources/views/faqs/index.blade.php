@@ -6,7 +6,8 @@
         </div>
         <div class="container">
             <h2 class="text-capitalize">FAQ's</h2>
-            <p>Hope you'll get your answers</p>
+            <div>Hope you'll get your answers, if you this didn't resolve your problem</div>
+            <a class="btn btn-sm btn-primary" href="/support">Ask now</a>
         </div>
     </div>
 @endsection

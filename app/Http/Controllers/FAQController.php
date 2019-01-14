@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FaqViewed;
 use App\FAQ;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class FAQController extends Controller {
     
     public function show(FAQ $faq)
     {
-        $faq->addView();
+        FaqViewed::dispatch($faq);
         
         return view('faqs.show', compact("faq"));
     }

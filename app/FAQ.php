@@ -18,12 +18,6 @@ class FAQ extends Model {
         return $query->where('answer', "!=", null);
     }
     
-    public function addView()
-    {
-        //TODO::Make A event for it
-        $this->increment('views');
-    }
-    
     public function mail()
     {
         Mail::to($this->email)->send(new AnswerFaqs($this));

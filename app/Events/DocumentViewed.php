@@ -17,7 +17,6 @@ class DocumentViewed {
             $document->save();
             $this->storeInSession($document);
         }
-        
     }
     
     private function isViewed($document)

@@ -14,7 +14,7 @@ class DocumentFormRequest extends FormRequest {
     
     public function authorize()
     {
-        if (auth()->check())
+        if (auth('admin')->check())
             return true;
         
         return false;
@@ -23,12 +23,12 @@ class DocumentFormRequest extends FormRequest {
     public function rules()
     {
         return [
-            'upload_file' => 'required|mimes:pdf,docx,png,jpg,jpeg|max:5120',
             'subject'     => 'required|min:4',
-            'tags'        => 'nullable|string',
             'type'        => 'required|in:notice,notification',
+            'tags'        => 'nullable|string',
             'department'  => 'required|exists:departments,id',
             'issued_at'   => 'required|date',
+            'upload_file' => 'required|mimes:pdf,docx,png,jpg,jpeg|max:5120',
         ];
         
     }
@@ -62,9 +62,9 @@ class DocumentFormRequest extends FormRequest {
         Document::create($this->data);
     }
     
-    public function storeFile()
+    public function storeFile($path)
     {
-        $this->upload_file->
-        storeAs('public', $this->data['file'] . "." . $this->fileExtension);
+        $this->upload_file->storeAs('public', $path);
     }
+    
 }

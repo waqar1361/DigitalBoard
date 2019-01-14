@@ -1,4 +1,4 @@
-.box-300 .box-body {
+.box-300 .box-body,.card-300 .card-body {
   max-height : 300px;
   overflow-y : auto;
 }

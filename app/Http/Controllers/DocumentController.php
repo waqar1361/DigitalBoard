@@ -32,8 +32,8 @@ class DocumentController extends Controller {
     public function store(DocumentFormRequest $request)
     {
         $request->ready();
-        $request->persist();
-        $request->storeFile();
+        $document = $request->persist();
+        $request->storeFile($document->filepath);
         
         return redirect('/admin/dashboard');
     }

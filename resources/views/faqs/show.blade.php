@@ -6,7 +6,7 @@
         </div>
         <div class="container">
             <h2 class="text-capitalize">FAQ's</h2>
-            <p>Hope it help you</p>
+            <p>Hope it helps you</p>
         </div>
     </div>
 @endsection

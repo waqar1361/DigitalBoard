@@ -176,7 +176,6 @@ return [
          * Package Service Providers...
          */
         
-        Jorenvh\Share\Providers\ShareServiceProvider::class,
         DevMarketer\EasyNav\EasyNavServiceProvider::class,
         
         
