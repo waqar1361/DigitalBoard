@@ -59,7 +59,7 @@ class DocumentFormRequest extends FormRequest {
     
     public function persist()
     {
-        Document::create($this->data);
+        return Document::create($this->data);
     }
     
     public function storeFile($path)
