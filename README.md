@@ -1,4 +1,4 @@
 # National Notice Board
-==========================================================================================================================================
-My Final Year Project: This is about automate the notice board system. Admin can manage and upload notices etc, of different departments, add department, and reply to any question asked by viwers.
-Visiters cans open or download or share notices etc, and ask questions if they want.
+Final Year Project: This is about automate the notice board system. Admin can manage (Upload, Publish, Block, Delete) Notices & Notifications of different Departments in Pakistan, Add new Department, and reply to any question asked by visiters.
+User can sign up to follow departments to get latest updates and can save any notice or notification to see later.
+Visiters cans open, download, share notices, and ask questions if they want.
