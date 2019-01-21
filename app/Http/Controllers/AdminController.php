@@ -28,8 +28,8 @@ class AdminController extends Controller {
     {
         return view('admin.dashboard')
             ->with([
-                       'data' => $repository->chartData(),
-                   ]);
+                'data' => $repository->chartData(),
+            ]);
     }
     
     public function show()
@@ -82,10 +82,8 @@ class AdminController extends Controller {
     
     public function destroy(Document $document)
     {
-        $path = 'storage/' . $document->file . '.' . $document->extension;
-        if (file_exists($path))
-            unlink($path);
-        
+        if (file_exists($document->filePath))
+            unlink($document->filePath);
         $document->delete();
         flash("Deleted");
         

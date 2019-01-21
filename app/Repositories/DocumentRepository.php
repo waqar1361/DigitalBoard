@@ -36,8 +36,9 @@ class DocumentRepository {
         
         
         /***        Search      ***/
-        if ($search !== null)
+        if ($search != null)
         {
+            $query->where("tags", "like", "%$search%");
             $keywords = explode(' ', $search);
             foreach ($keywords as $key)
             {
@@ -82,7 +83,7 @@ class DocumentRepository {
         $labels = $query->pluck('year');
         $values = $query->pluck('published');
         
-        return collect(['labels' => $labels, 'values' => $values,])->toJson();;
+        return collect(['labels' => $labels, 'values' => $values,])->toJson();
         
     }
     
