@@ -37,9 +37,7 @@
                 <div class="copyright" id="copyright">
                     &copy; {{ date('Y') }}
                     , All rights are reserved by National Notice Board.
-                    Developed by
-                    <a href="mailto:waqarqadri6@gmail.com">Muhammad Waqar</a>
-                    , Group # 17,
+                    Developed by Group # 17,
                     <a href="http://www.giccl.edu.pk/">Govt. Islamia College</a> Civil Lines LHR.
                 </div>
             </div>
