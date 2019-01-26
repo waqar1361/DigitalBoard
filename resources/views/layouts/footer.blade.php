@@ -55,7 +55,7 @@
         
         <div class="row justify-content-md-center sharing-area text-center">
             <div class="text-center col-md-12 col-lg-8">
-                <h3>Thank you for supporting us!</h3>
+                <h3>Follow Us</h3>
             </div>
             <div class="text-center col-md-12 col-lg-8">
                 <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-twitter btn-round btn-lg"
@@ -68,21 +68,13 @@
                    title="Like us">
                     <i class="fab fa-facebook-square"></i>
                 </a>
-                <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-linkedin btn-lg btn-round"
-                   rel="tooltip"
-                   title="Follow us">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+               
                 <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-google btn-lg btn-round"
                    rel="tooltip"
                    title="Follow us">
                     <i class="fab fa-google"></i>
                 </a>
-                <a target="_blank" href="javascript:void(0)" class="btn btn-neutral btn-icon btn-github btn-round btn-lg"
-                   rel="tooltip"
-                   title="Star on Github">
-                    <i class="fab fa-github"></i>
-                </a>
+                
             </div>
         </div>
     
@@ -90,7 +82,7 @@
     <hr>
     <p class="text-center m-0">
         &copy; {{ date("Y") }}, All rights reserved by {{ config('app.name') }}. Developed By
-        <a href="mailto:waqarqadri6@gmail.com">Muhammad Waqar</a>, Group # 17,
+         Group # 17,
         <a href="http://www.giccl.edu.pk/">Govt. Islamia College</a> Civil Lines LHR.
     </p>
     <!-- todo : developed By group & back to top-->

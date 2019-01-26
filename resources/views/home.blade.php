@@ -13,10 +13,8 @@
                 <a href="/browse" class="btn btn-sm btn-primary">Browse Now</a>
             </div>
             <h6 class="category category-absolute">
-                Developed By Group # 17's Team Lead
-                <a href="mailto:waqarqadri6@gmail.com">
-                    Muhammad Waqar
-                </a>
+                Developed By Group # 17
+               
             </h6>
         </div>
     </div>
@@ -27,7 +25,7 @@
     <div class="page row">
         
         <section class="col-md">
-            <div class="card card-300 mb-4">
+            <div class="card mb-4">
                 
                 <div class="card-header">
                     <h2 class="card-title text-center">Latest Notices</h2>
@@ -54,7 +52,7 @@
         </section>
         
         <section class="col-md">
-            <div class="card card-300 border-dark mb-4">
+            <div class="card border-dark mb-4">
                 
                 <div class="card-header">
                     <h2 class="card-title text-center">Latest Notifications</h2>
