@@ -2,9 +2,9 @@
 
 @section('content')
     
-    <h3>Your Question: {{ $faq->question }}</h3>
+    <h3>Your Question: {{ $inquiry->question }}</h3>
     <hr>
     <h3>Answer :</h3>
-    <p>{{ $faq->answer }}</p>
+    <p>{{ $inquiry->answer }}</p>
     
 @endsection

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\Document;
 use App\Repositories\DocumentRepository;
-use File;
 
-class AdminController extends Controller {
+class AdminController extends Controller
+{
     
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->middleware('auth:admin');
     }
@@ -24,37 +24,49 @@ class AdminController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(DocumentRepository $repository)
-    {
-        return view('admin.dashboard')
-            ->with([
-                'data' => $repository->chartData(),
-            ]);
+    public function index(DocumentRepository $repository) {
+        if (request('chartData'))
+        {
+            return $repository->chartData();
+        }
+        if (request('departments'))
+        {
+            $departments = Department::orderBy('name')->get();
+            foreach ($departments as $dept)
+            {
+                $dept->noticesCount = count($dept->notices);
+                $dept->notificationsCount = count($dept->notifications);
+            }
+            
+            return $departments;
+        }
+        
+        return view('admin.dashboard');
     }
     
-    public function show()
-    {
+    public function show() {
         $documents = Document::latest()->allowed()->get();
-        
+        foreach ($documents as $document)
+        {
+            $document->date = $document->issued_at->format('d M Y');
+            $document->departmentName = $document->department->name;
+        }
         return view('document.docs', compact('documents'));
     }
     
-    public function pending()
-    {
+    public function pending() {
         $documents = Document::latest()->pending()->get();
         
         return view('document.pending', compact('documents'));
     }
     
-    public function blocked()
-    {
+    public function blocked() {
         $documents = Document::latest()->blocked()->get();
         
         return view('document.blocked', compact('documents'));
     }
     
-    public function block(Document $document)
-    {
+    public function block(Document $document) {
         $document->blocked = 1;
         $document->save();
         flash('Blocked');
@@ -62,8 +74,7 @@ class AdminController extends Controller {
         return back();
     }
     
-    public function unblock(Document $document)
-    {
+    public function unblock(Document $document) {
         $document->blocked = 0;
         $document->save();
         flash('Un-Blocked');
@@ -71,8 +82,7 @@ class AdminController extends Controller {
         return back();
     }
     
-    public function publish(Document $document)
-    {
+    public function publish(Document $document) {
         $document->published = 1;
         $document->save();
         flash('Published');
@@ -80,8 +90,7 @@ class AdminController extends Controller {
         return back();
     }
     
-    public function destroy(Document $document)
-    {
+    public function destroy(Document $document) {
         if (file_exists($document->filePath))
             unlink($document->filePath);
         $document->delete();

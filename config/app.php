@@ -245,7 +245,7 @@ return [
         /**My Models**/
         'Dept'         => App\Department::class,
         'Doc'          => App\Document::class,
-        'FAQ'          => App\FAQ::class,
+        'FAQ'          => App\Inquiry::class,
     ],
 
 ];

@@ -18,18 +18,10 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="{{ Nav::isRoute('admin.create.dept') }}">
-                <a href="{{ route('admin.create.dept') }}">
+            <li class="{{ Nav::isRoute('departments.create') }}">
+                <a href="{{ route('departments.create') }}">
                     <i class="now-ui-icons ui-1_simple-add"></i>
                     <p>Department</p>
-                </a>
-            </li>
-    
-    
-            <li class="{{ Nav::isRoute('admin.show.docs') }}">
-                <a href="{{ route('admin.show.docs') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>Notices</p>
                 </a>
             </li>
             
@@ -46,7 +38,14 @@
                     <p>Pending Notices</p>
                 </a>
             </li>
-            
+
+            <li class="{{ Nav::isRoute('admin.show.docs') }}">
+                <a href="{{ route('admin.show.docs') }}">
+                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <p>Notices & Notification</p>
+                </a>
+            </li>
+
             <li class="{{ Nav::isRoute('admin.blocked.doc') }}">
                 <a href="{{ route('admin.blocked.doc') }}">
                     <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -54,25 +53,13 @@
                 </a>
             </li>
             
-            <li class="{{ Nav::isRoute('admin.faqs') }}">
-                <a href="{{ route('admin.faqs') }}">
+            <li class="{{ Nav::isRoute('admin.inquiries') }}">
+                <a href="{{ route('admin.inquiries') }}">
                     <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p>FAQ's</p>
+                    <p>Inquiries</p>
                 </a>
             </li>
             
-            
-            {{--<li class="active-pro">--}}
-            {{--<a href="{{ route('logout') }}" onclick="event.preventDefault();--}}
-            {{--document.getElementById('logout-form').submit();" title="Logout">--}}
-            {{--<i class="now-ui-icons media-1_button-power"></i>--}}
-            {{--<p>Logout</p>--}}
-            {{--</a>--}}
-            {{--<form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">--}}
-            {{--{{ csrf_field() }}--}}
-            {{--</form>--}}
-            {{----}}
-            {{--</li>--}}
         </ul>
     </div>
 </div>

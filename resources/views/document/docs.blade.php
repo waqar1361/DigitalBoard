@@ -15,29 +15,14 @@
                     <table class="table">
                         <thead class="text-primary">
                         <tr>
-                            <th>Block</th>
                             <th>Date</th>
                             <th>Department</th>
                             <th>Subject</th>
+                            <th>Block</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($documents as $document)
-                            <tr>
-                                <td>
-                                    <form action="{{ route('admin.block.doc', $document->file) }}" method="post">
-                                        {{ method_field('patch') }}
-                                        {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-ban"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>{{ $document->issued_at->format('d M Y') }}</td>
-                                <td>{{ $document->department->name }}</td>
-                                <td>{{ $document->subject }}</td>
-                            </tr>
-                        @endforeach
+                      
                         </tbody>
                     </table>
                 </div>
@@ -50,3 +35,27 @@
     </div>
 
 @endsection
+
+
+@push('js')
+    <script>
+        $('.table').DataTable({
+            data: {!! $documents !!},
+            columns: [
+                {data: 'date'},
+                {data: 'departmentName'},
+                {data: 'subject'},
+                {
+                    data: null,
+                    render: function (data) {
+                        return '<form action="document/' + data['file'] + '/block" method="post">{{ method_field('patch') }}' +
+                            '{{ csrf_field() }}' +
+                            '<button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i></button>' +
+                            '</form>';
+                    }
+                },
+            ],
+        });
+    </script>
+@endpush
+

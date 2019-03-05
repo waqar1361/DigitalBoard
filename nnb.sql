@@ -119,8 +119,8 @@ INSERT INTO `documents` (`id`, `subject`, `file`, `extension`, `department_id`, 
 	(32, 'Performance in Punjab Examination Commission', '0458917001542699887', 'pdf', 7, 'notification', ',Performance in Punjab Examination Commission, notifications, school education, 2017-09-27, 27 September 2017', '2017-09-27', '2018-11-20 12:44:47', '2018-11-20 12:44:47');
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `faqs`;
-CREATE TABLE IF NOT EXISTS `faqs` (
+DROP TABLE IF EXISTS `inquiries`;
+CREATE TABLE IF NOT EXISTS `inquiries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -132,11 +132,11 @@ CREATE TABLE IF NOT EXISTS `faqs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
-DELETE FROM `faqs`;
-/*!40000 ALTER TABLE `faqs` DISABLE KEYS */;
-INSERT INTO `faqs` (`id`, `name`, `email`, `question`, `answer`, `views`, `created_at`, `updated_at`) VALUES
+DELETE FROM `inquiries`;
+/*!40000 ALTER TABLE `inquiries` DISABLE KEYS */;
+INSERT INTO `inquiries` (`id`, `name`, `email`, `question`, `answer`, `views`, `created_at`, `updated_at`) VALUES
 	(1, 'dev', 'dev@example.com', 'How can I download a file in pdf?', 'Well, simply select your notice/notification and click on download link given.', 0, '2018-10-31 11:45:59', '2018-11-01 09:12:34');
-/*!40000 ALTER TABLE `faqs` ENABLE KEYS */;
+/*!40000 ALTER TABLE `inquiries` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (

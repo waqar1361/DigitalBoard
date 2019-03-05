@@ -10,7 +10,7 @@
                     <h5><a href="/browse?type=notice">Notices</a></h5>
                     <h5><a href="/browse?type=notification">Notifications</a></h5>
                     <h5><a href="/support">Support</a></h5>
-                    <h5><a href="/faqs">FAQ's</a></h5>
+                    <h5><a href="/faqs">FAQs</a></h5>
                 </ul>
             </div>
             <div class="col"></div>
@@ -83,7 +83,7 @@
     <p class="text-center m-0">
         &copy; {{ date("Y") }}, All rights reserved by {{ config('app.name') }}. Developed By
          Group # 17,
-        <a href="http://www.giccl.edu.pk/">Govt. Islamia College</a> Civil Lines LHR.
+        <a href="http://www.giccl.edu.pk/">Govt. Islamia College,</a> Civil Lines, LHR.
     </p>
     <!-- todo : developed By group & back to top-->
     <a id="toTop" class="fa" style="display: none"></a>

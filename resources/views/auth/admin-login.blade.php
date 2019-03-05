@@ -12,9 +12,9 @@
                     <div class="card-body">
                         <div class="input-group no-border input-lg">
                             <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="now-ui-icons users_circle-08"></i>
-                                    </span>
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
                             </div>
                             <input type="text" class="form-control" name="email" value="admin@nnb.pk" readonly>
                         </div>
@@ -24,7 +24,7 @@
                       <i class="now-ui-icons text_caps-small"></i>
                     </span>
                             </div>
-                            <input type="password" placeholder="Password" name="password" class="form-control"/>
+                            <input type="password" placeholder="Password" name="password" class="form-control" autofocus/>
                         </div>
                     </div>
                     <div class="card-footer text-center">

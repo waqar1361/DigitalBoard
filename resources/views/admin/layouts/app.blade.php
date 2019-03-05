@@ -13,15 +13,14 @@
     <link href="{{ asset("css/libs/fontawesome.css") }}" rel="stylesheet">
     <link href="{{ asset("css/libs/bootstrap.min.css") }}" media="all" rel="stylesheet">
     <link href="{{ asset("css/libs/bootstrap-datepicker.min.css") }}" media="all" rel="stylesheet">
+    <link href="{{ asset("css/datatables.min.css") }}" media="all" rel="stylesheet">
     <link href="{{ asset("css/admin/dashboard.min.css") }}" media="all" rel="stylesheet">
-    
     <link href="{{ asset("css/admin/style.css") }}" media="all" rel="stylesheet">
 
 </head>
 <body class="">
 
 <div class="wrapper">
-    
     @include('admin.layouts.sidebar')
     
     <main class="main-panel">
@@ -53,7 +52,7 @@
 <script src="{{ asset("js/plugins/bootstrap-notify.js") }}"></script>
 <script src="{{asset('js/plugins/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{ asset("js/admin/dashboard.min.js") }}"></script>
-@if(url()->current() === route("admin.create.dept"))
+@if(url()->current() === route("departments.create"))
     <script src="{{ asset("js/admin/axios-vue.js") }}"></script>
     <script src="{{ asset("js/admin/script.js") }}"></script>
 @else
@@ -62,7 +61,8 @@
 @if(url()->current() === route("admin.home"))
     <script src="{{ asset("js/admin/chart.js") }}"></script>
 @endif
-
+<script src="{{ asset('js/datatables.min.js') }}"></script>
+@stack('js')
 @include('layouts.alert')
 
 </body>

@@ -2,7 +2,7 @@
 @section('page','index')
 @section('header')
     
-    <div class="page-header clear-filter">
+    <div class="page-header">
         <div class="page-header-image" data-parallax="true" style="background-image:url({{config('app.image-path')}})">
         </div>
         <div class="container">

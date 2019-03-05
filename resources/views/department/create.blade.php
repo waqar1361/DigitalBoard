@@ -13,7 +13,7 @@
                     <h4 class="card-title">Create new Department</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('store.dept')}}" id="form" method="post" @submit.prevent="saveDept">
+                    <form action="{{route('departments.store')}}" id="form" method="post" @submit.prevent="saveDept">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" :class="{ 'is-invalid' :  nameError  }" class="form-control" v-model="name" placeholder="Name" @keydown="errors=false" autofocus>

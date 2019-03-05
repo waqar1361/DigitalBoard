@@ -17,7 +17,7 @@ class DocumentFormRequest extends FormRequest {
         if (auth('admin')->check())
             return true;
         
-        return false;
+        return abort(403);
     }
     
     public function rules()
@@ -45,7 +45,7 @@ class DocumentFormRequest extends FormRequest {
         $fileName = preg_replace(['/\s+/', '/\./'], '', microtime());
         $this->fileExtension = $this->upload_file->getClientOriginalExtension();
         
-        $this->data = [
+        return $this->data = [
             'subject'       => $this->subject,
             'tags'          => $tags,
             'type'          => $this->type,
